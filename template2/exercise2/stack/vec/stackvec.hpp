@@ -13,89 +13,89 @@ namespace lasd {
 
 /* ************************************************************************** */
 
-template <typename Data>
-class StackVec {
-  // Must extend Stack<Data>,
-  //             Vector<Data>
+    template <typename Data>
+    class StackVec : public virtual Stack<Data>, protected virtual Vector<Data>{
+        // Must extend Stack<Data>,
+        //             Vector<Data>
 
-private:
+    private:
 
-  // ...
+    protected:
 
-protected:
+        using Vector<Data>::size;
+        using Vector<Data>::elem;
+        ulong index = 0;
 
-  // using Vector<Data>::???;
+    public:
 
-  // ...
+        // Default constructor
+        StackVec() : Vector<Data>(1) {};
 
-public:
+        /* ************************************************************************ */
 
-  // Default constructor
-  // StackVec() specifier;
+        // Specific constructor
+        StackVec(const TraversableContainer<Data>& cont) : Vector<Data>(cont), index(size) {}; // A stack obtained from a TraversableContainer
+        StackVec(MappableContainer<Data>&& cont) : Vector<Data>(std::move(cont)), index(size) {}; // A stack obtained from a MappableContainer
 
-  /* ************************************************************************ */
+        /* ************************************************************************ */
 
-  // Specific constructor
-  // StackVec(argument) specifiers; // A stack obtained from a TraversableContainer
-  // StackVec(argument) specifiers; // A stack obtained from a MappableContainer
+        // Copy constructor
+        StackVec(const StackVec& stk) : Vector<Data>(stk), index(stk.index) {};
 
-  /* ************************************************************************ */
+        // Move constructor
+        StackVec(StackVec&&) noexcept;
 
-  // Copy constructor
-  // StackVec(argument);
+        /* ************************************************************************ */
 
-  // Move constructor
-  // StackVec(argument);
+        // Destructor
+        virtual ~StackVec() = default;
 
-  /* ************************************************************************ */
+        /* ************************************************************************ */
 
-  // Destructor
-  // ~StackVec() specifier;
+        // Copy assignment
+        StackVec& operator=(const StackVec&);
 
-  /* ************************************************************************ */
+        // Move assignment
+        StackVec& operator=(StackVec&&) noexcept;
 
-  // Copy assignment
-  // type operator=(argument);
+        /* ************************************************************************ */
 
-  // Move assignment
-  // type operator=(argument);
+        // Comparison operators
+        bool operator==(const StackVec&) const noexcept;
+        inline bool operator!=(const StackVec&) const noexcept;
 
-  /* ************************************************************************ */
+        /* ************************************************************************ */
 
-  // Comparison operators
-  // type operator==(argument) specifiers;
-  // type operator!=(argument) specifiers;
+        // Specific member functions (inherited from Stack)
+        const Data& Top() const override; // Override Stack member (non-mutable version; must throw std::length_error when empty)
+        Data& Top() override; // Override Stack member (non-mutable version; must throw std::length_error when empty)
+        void Pop() override; // Override Stack member (must throw std::length_error when empty)
+        Data TopNPop() override; // Override Stack member (must throw std::length_error when empty)
+        void Push(const Data&) override; // Override Stack member (copy of the value)
+        void Push(Data&&) override; // Override Stack member (move of the value)
 
-  /* ************************************************************************ */
+        /* ************************************************************************ */
 
-  // Specific member functions (inherited from Stack)
+        // Specific member functions (inherited from Container)
 
-  // type Top() specifiers; // Override Stack member (non-mutable version; must throw std::length_error when empty)
-  // type Top() specifiers; // Override Stack member (non-mutable version; must throw std::length_error when empty)
-  // type Pop() specifiers; // Override Stack member (must throw std::length_error when empty)
-  // type TopNPop() specifiers; // Override Stack member (must throw std::length_error when empty)
-  // type Push(argument) specifiers; // Override Stack member (copy of the value)
-  // type Push(argument) specifiers; // Override Stack member (move of the value)
+        inline bool Empty() const noexcept override; // Override Container member
 
-  /* ************************************************************************ */
+        inline ulong Size() const noexcept override; // Override Container member
 
-  // Specific member functions (inherited from Container)
+        /* ************************************************************************ */
 
-  // type Empty() specifiers; // Override Container member
+        // Specific member function (inherited from ClearableContainer)
 
-  // type Size() specifiers; // Override Container member
+        void Clear() override; // Override ClearableContainer member
 
-  /* ************************************************************************ */
+    protected:
 
-  // Specific member function (inherited from ClearableContainer)
+        // Auxiliary member functions
 
-  // type Clear() specifiers; // Override ClearableContainer member
+        void Expand();
+        void Reduce();
 
-protected:
-
-  // Auxiliary functions, if necessary!
-
-};
+    };
 
 /* ************************************************************************** */
 
