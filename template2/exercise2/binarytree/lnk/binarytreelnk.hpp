@@ -12,9 +12,8 @@ namespace lasd {
 
 /* ************************************************************************** */
 
-template <typename Data>
-class BinaryTreeLnk {
-  // Must extend MutableBinaryTree<Data>
+emplate <typename Data>
+class BinaryTreeLnk : public virtual MutableBinaryTree<Data>{
 
 private:
 
@@ -22,11 +21,9 @@ private:
 
 protected:
 
-  // using BinaryTree<Data>::???;
+  using Container::size;
 
-  // ...
-
-  struct NodeLnk { // Must extend MutableNode
+  struct NodeLnk : virtual MutableBinaryTree<Data>::MutableNode {  // Must extend MutableNode
 
   private:
 
@@ -44,59 +41,81 @@ protected:
 
 public:
 
+
   // Default constructor
+  BinaryTreeLnk() = default;
+
   // BinaryTreeLnk() specifiers;
 
   /* ************************************************************************ */
 
   // Specific constructors
-  // BinaryTreeLnk(argument) specifiers; // A binary tree obtained from a TraversableContainer
-  // BinaryTreeLnk(argument) specifiers; // A binary tree obtained from a MappableContainer
-
+//TO DO MARY SOMMELLA      // BinaryTreeLnk(argument) specifiers; // A binary tree obtained from a TraversableContainer
+  BinaryTreeLnk(const MappableContainer<Data>& right); // A binary tree obtained from a MappableContainer
   /* ************************************************************************ */
 
   // Copy constructor
-  // BinaryTreeLnk(argument) specifiers;
+  BinaryTreeLnk(const BinaryTreeLnk& right);
 
   // Move constructor
-  // BinaryTreeLnk(argument) specifiers;
+  BinaryTreeLnk(BinaryTreeLnk&& right) noexcept;
 
   /* ************************************************************************ */
 
   // Destructor
-  // ~BinaryTreeLnk() specifiers;
+  virtual ~BinaryTreeLnk() {
+    delete root;
+  }
 
   /* ************************************************************************ */
 
   // Copy assignment
-  // type operator=(argument) specifiers;
+  BinaryTreeLnk<Data>& operator=(const BinaryTreeLnk& right);
 
   // Move assignment
-  // type operator=(argument) specifiers;
+  BinaryTreeLnk<Data>& operator=(BinaryTreeLnk&& right) noexcept;
 
   /* ************************************************************************ */
 
   // Comparison operators
-  // type operator==(argument) specifiers;
-  // type operator!=(argument) specifiers;
+  inline bool operator==(const BinaryTreeLnk& right) const noexcept { 
+    return BinaryTree<Data>::operator==(right); 
+  };
+  inline bool operator!=(const BinaryTreeLnk& right) const noexcept { 
+    return BinaryTree<Data>::operator!=(right); 
+  };
 
   /* ************************************************************************ */
 
   // Specific member functions (inherited from BinaryTree)
-
-  // type Root() specifiers; // Override BinaryTree member (throw std::length_error when empty)
+  virtual inline const NodeLnk& Root() const override {
+    if(this->Empty()) {
+      throw std::length_error("Error: BinaryLnkTree->isEmpty");
+    }
+    return *root;
+  }; // Override BinaryTree member (throw std::length_error when empty)
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from MutableBinaryTree)
-
-  // type Root() specifiers; // Override MutableBinaryTree member (throw std::length_error when empty)
+  virtual inline NodeLnk& Root() override {
+    if(this->Empty()) {
+      throw std::length_error("Error: BinaryLnkTree->isEmpty");
+    }
+    return *root;
+  }; // Override MutableBinaryTree member (throw std::length_error when empty)
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from ClearableContainer)
 
-  // type Clear() specifiers; // Override ClearableContainer member
+  virtual inline void Clear() override { 
+    if (root != nullptr) { 
+      delete root; 
+      root=nullptr; 
+    } 
+    size = 0; 
+  }; // Override ClearableContainer member
 
 };
 
