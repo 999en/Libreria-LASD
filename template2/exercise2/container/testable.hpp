@@ -12,44 +12,40 @@ namespace lasd {
 
 /* ************************************************************************** */
 
-template <typename Data>
-class TestableContainer {
-  // Must extend Container
+    template <typename Data>
+    class TestableContainer : public virtual Container{
+        // Must extend Container
 
-private:
+    private:
 
-  // ...
+    protected:
 
-protected:
+    public:
 
-  // ...
+        // Destructor
+        virtual ~TestableContainer() = default;
 
-public:
+        /* ************************************************************************ */
 
-  // Destructor
-  // ~TestableContainer() specifiers
+        // Copy assignment
+        TestableContainer& operator=(const TestableContainer& val) = delete;
 
-  /* ************************************************************************ */
+        // Move assignment
+        TestableContainer& operator=(TestableContainer&& val) = delete;
 
-  // Copy assignment
-  // type operator=(argument); // Copy assignment of abstract types is not possible.
+        /* ************************************************************************ */
 
-  // Move assignment
-  // type operator=(argument); // Move assignment of abstract types is not possible.
+        // Comparison operators
+        bool operator==(const TestableContainer& val) const noexcept = delete;
+        bool operator!=(const TestableContainer& val) const noexcept = delete;
 
-  /* ************************************************************************ */
+        /* ************************************************************************ */
 
-  // Comparison operators
-  // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-  // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
+        // Specific member function
 
-  /* ************************************************************************ */
+        virtual bool Exists(const Data& valore) const noexcept = 0;
 
-  // Specific member function
-
-  // type Exists(argument) specifiers; // (concrete function should not throw exceptions)
-
-};
+    };
 
 /* ************************************************************************** */
 
