@@ -19,7 +19,7 @@
 
 /* ************************************************************************** */
 
-void mytest();
+void myTest();
 
 void TestEsercizio1();
 bool TestCostruttori();
