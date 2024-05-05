@@ -12,7 +12,7 @@ namespace lasd {
 
 /* ************************************************************************** */
 
-emplate <typename Data>
+template <typename Data>
 class BinaryTreeLnk : public virtual MutableBinaryTree<Data>{
 
 private:
