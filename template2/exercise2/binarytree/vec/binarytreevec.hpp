@@ -26,7 +26,7 @@ protected:
   // ...
   struct NodeVec : virtual MutableBinaryTree<Data>::MutableNode{ // Must extend MutableNode
 
-  friend class BinaryTreeVec<Data>; //inizio incertezza
+  friend class BinaryTreeVec<Data>; 
 
   private:
 
@@ -84,7 +84,7 @@ protected:
   using Vector<Data>::Elements;
   NodeVec* Nodes = nullptr;
 
-public://incertezza
+public:
 
   
   using BinaryTree<Data>::Map;
@@ -158,13 +158,15 @@ using BinaryTree<Data>::PostOrderMap;
 
   // Specific member function (inherited from BreadthTraversableContainer)
 
-  // type BreadthTraverse(arguments) specifiers; // Override BreadthTraversableContainer member
+  using typename TraversableContainer<Data>::TraverseFun;
+
+virtual void BreadthTraverse(TraverseFun) const override;// Override BreadthTraversableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from BreadthMappableContainer)
-
-  // type BreadthMap(arguments) specifiers; // Override BreadthMappableContainer member
+using typename MappableContainer<Data>::MapFun;
+virtual void BreadthMap(MapFun func) const override; // Override BreadthMappableContainer member
 
 protected:
 
