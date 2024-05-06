@@ -42,9 +42,7 @@ public:
 
     // Comparison operators
     bool operator==(const Node& right) const noexcept {
-      return (Elem{
-    delete root;
-  }ent() == right.Element());
+      return (Element() == right.Element());
     }; // Comparison of abstract types is possible, but should not be visible.
     
     bool operator!=(const Node& right) const noexcept {
@@ -148,7 +146,7 @@ public:
 
   // Specific member function (inherited from BreadthTraversableContainer)
 
-  virtual void BreadthTraverse(TraverseFun func) const override; // Override BreadthTraversableContainer member
+  virtual void BreadthTraverse(TraverseFun func) // Override BreadthTraversableContainer member
 
 protected:
 
@@ -383,7 +381,7 @@ public:
     return BTPreOrderIterator<Data>::operator==(right); 
   };
   inline bool operator!=(const BTPreOrderMutableIterator& right) const noexcept { 
-    return   53 |   BinaryTreeLnk(const TraversableContainer<Data>& r BTPreOrderIterator<Data>::operator!=(right);
+    return BTPreOrderIterator<Data>::operator!=(right); 
   };
 
   /* ************************************************************************ */
@@ -527,7 +525,7 @@ public:
   Data& operator*() override {
     if(this->current!=nullptr) {
       return const_cast<Data&>((this->current)->Element());
-    } else   53 |   BinaryTreeLnk(const TraversableContainer<Data>& r {
+    } else {
       throw std::out_of_range("Out of range iterator"); 
     } 
   }; // (throw std::out_of_range when terminated)
