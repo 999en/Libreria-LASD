@@ -26,7 +26,7 @@ protected:
   // ...
   struct NodeVec : virtual MutableBinaryTree<Data>::MutableNode{ // Must extend MutableNode
 
-  friend class BinaryTreeVec<Data>; 
+  friend class BinaryTreeVec<Data>; //inizio incertezza
 
   private:
 
@@ -84,7 +84,7 @@ protected:
   using Vector<Data>::Elements;
   NodeVec* Nodes = nullptr;
 
-public:
+public://incertezza
 
   
   using BinaryTree<Data>::Map;
@@ -96,7 +96,7 @@ using BinaryTree<Data>::PostOrderMap;
   /* ************************************************************************ */
 
   // Specific constructors
-  BinaryTreeVec(const TraversableContainer<Data>& right); // A binary tree obtained from a TraversableContainer
+  // BinaryTreeVec(argument) specifiers; // A binary tree obtained from a TraversableContainer
   BinaryTreeVec(const MappableContainer<Data>& right);   // A binary tree obtained from a MappableContainer
   /* ************************************************************************ */
 
@@ -158,15 +158,13 @@ using BinaryTree<Data>::PostOrderMap;
 
   // Specific member function (inherited from BreadthTraversableContainer)
 
-  using typename TraversableContainer<Data>::TraverseFun;
-
-virtual void BreadthTraverse(TraverseFun) const override;// Override BreadthTraversableContainer member
+  // type BreadthTraverse(arguments) specifiers; // Override BreadthTraversableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from BreadthMappableContainer)
-using typename MappableContainer<Data>::MapFun;
-virtual void BreadthMap(MapFun func) const override; // Override BreadthMappableContainer member
+
+  // type BreadthMap(arguments) specifiers; // Override BreadthMappableContainer member
 
 protected:
 

@@ -5,8 +5,8 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-BST<Data>::BST(const MappableContainer<Data>& right) {
-  right.Map(
+BST<Data>::BST(const TraversableContainer<Data>& right) {
+  right.Traverse(
     [this](const Data& value){
       Insert(value);
     }
@@ -14,7 +14,7 @@ BST<Data>::BST(const MappableContainer<Data>& right) {
 }
 
 template <typename Data>
-BST<Data>::BST(MutableMappableContainer<Data>&& right) noexcept {
+BST<Data>::BST(MappableContainer<Data>&& right) noexcept {
   right.Map(
     [this](const Data& value){
       Insert(std::move(value));
