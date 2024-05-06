@@ -108,7 +108,6 @@ public:
   // Specific member functions
 
   virtual const Node& Root() const = 0; // (concrete function must throw std::length_error when empty)
-              // TODO MARY SOMMELLA
   /* ************************************************************************ */
 
   // Specific member function (inherited from TraversableContainer)
@@ -129,13 +128,14 @@ public:
 
   // Specific member function (inherited from PostOrderTraversableContainer)
 
-  // type PostOrderTraverse(arguments) specifiers; // Override PostOrderTraversableContainer member
+  
+  virtual void PostOrderTraverse(TraverseFun func) const override; // Override PostOrderTraversableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from InOrderTraversableContainer)
 
-  // type InOrderTraverse(arguments) specifiers; // Override InOrderTraversableContainer member
+  virtual void InOrderTraverse(TraverseFun func) const override; // Override InOrderTraversableContainer member
 
   /* ************************************************************************ */
 
