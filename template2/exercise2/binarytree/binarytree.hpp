@@ -108,20 +108,22 @@ public:
   // Specific member functions
 
   virtual const Node& Root() const = 0; // (concrete function must throw std::length_error when empty)
-              // TO DO MARY SOMMELLA
+              // TODO MARY SOMMELLA
   /* ************************************************************************ */
 
   // Specific member function (inherited from TraversableContainer)
 
-  // using typename TraversableContainer<Data>::TraverseFun;
+   using typename TraversableContainer<Data>::TraverseFun;
 
-  // type Traverse(arguments) specifiers; // Override TraversableContainer member
+  virtual void Traverse(TraverseFun func) const override {
+    PreOrderTraverse(func);
+  }; // Override TraversableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from PreOrderTraversableContainer)
 
-  // type PreOrderTraverse(arguments) specifiers; // Override PreOrderTraversableContainer member
+  virtual void PreOrderTraverse(TraverseFun func) const override;  // Override PreOrderTraversableContainer member
 
   /* ************************************************************************ */
 
@@ -150,13 +152,13 @@ protected:
 /* ************************************************************************** */
 
 template <typename Data>
-class MutableBinaryTree {
-  // Must extend ClearableContainer,
-  //             BinaryTree<Data>,
-  //             PreOrderMappableContainer<Data>,
-  //             PostOrderMappableContainer<Data>,
-  //             InOrderMappableContainer<Data>,
-  //             BreadthMappableContainer<Data>
+  class MutableBinaryTree : virtual public ClearableContainer,
+                            virtual public BinaryTree<Data>,
+                            virtual public PreOrderMappableContainer<Data>,
+                            virtual public PostOrderMappableContainer<Data>,
+                            virtual public InOrderMappableContainer<Data>,
+                            virtual public BreadthMappableContainer<Data> {
+
 
 private:
 
@@ -168,61 +170,62 @@ protected:
 
 public:
 
-  struct MutableNode {
-    // Must extend Node
+  struct MutableNode : public virtual BinaryTree<Data>::Node{
 
-    // friend class MutableBinaryTree<Data>;
+    friend class MutableBinaryTree<Data>;
 
     /* ********************************************************************** */
 
     // Destructor
-    // ~MutableNode() specifiers
+    virtual ~MutableNode() = default;
 
     /* ********************************************************************** */
 
     // Copy assignment
-    // type operator=(argument); // Copy assignment of abstract types is not possible.
+    MutableNode& operator=(const MutableNode& right) = delete; // Copy assignment of abstract types should not be possible.
 
     // Move assignment
-    // type operator=(argument); // Move assignment of abstract types is not possible.
+    MutableNode& operator=(MutableNode&& right) noexcept = delete; // Move assignment of abstract types should not be possible.
 
     /* ********************************************************************** */
 
     // Specific member functions
 
-    // type Element() specifiers; // Mutable access to the element (concrete function should not throw exceptions)
+    virtual Data& Element() noexcept = 0; // Mutable access to the element (concrete function should not throw exceptions)
 
-    // type LeftChild() specifiers; // (concrete function must throw std::out_of_range when not existent)
-    // type RightChild() specifiers; // (concrete function must throw std::out_of_range when not existent)
+    virtual MutableNode& LeftChild() = 0; // (concrete function must throw std::out_of_range when not existent)
+    virtual MutableNode& RightChild() = 0; // (concrete function must throw std::out_of_range when not existent)
 
   };
 
   /* ************************************************************************ */
 
   // Destructor
-  // ~MutableBinaryTree() specifiers
+  virtual ~MutableBinaryTree() = default;
 
   /* ************************************************************************ */
 
   // Copy assignment
-  // type operator=(argument); // Copy assignment of abstract types is not possible.
+  MutableBinaryTree<Data>& operator=(const MutableBinaryTree& right) = delete; // Copy assignment of abstract types should not be possible.
 
   // Move assignment
-  // type operator=(argument); // Move assignment of abstract types is not possible.
+  MutableBinaryTree<Data>& operator=(MutableBinaryTree&& right) = delete; // Move assignment of abstract types should not be possible.
 
   /* ************************************************************************ */
 
   // Specific member functions
 
-  // type Root() specifiers; // (concrete function must throw std::length_error when empty)
+  virtual MutableNode& Root() = 0; // (concrete function must throw std::length_error when empty)
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from MappableContainer)
 
-  // using typename MappableContainer<Data>::MapFun;
+   using typename MappableContainer<Data>::MapFun;
 
-  // type Map(argument) specifiers; // Override MappableContainer member
+  virtual void inline Map(MapFun func) override {
+    PreOrderTraverse(func);
+  }; // Override MappableContainer member
 
   /* ************************************************************************ */
 
