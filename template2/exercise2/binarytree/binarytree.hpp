@@ -141,7 +141,7 @@ public:
 
   // Specific member function (inherited from BreadthTraversableContainer)
 
-  // type BreadthTraverse(arguments) specifiers; // Override BreadthTraversableContainer member
+  virtual void BreadthTraverse(TraverseFun) func // Override BreadthTraversableContainer member
 
 protected:
 
@@ -231,25 +231,25 @@ public:
 
   // Specific member function (inherited from PreOrderMappableContainer)
 
-  // type PreOrderMap(argument) specifiers; // Override PreOrderMappableContainer member
+  virtual void PreOrderMap(MapFun func) const override; // Override PreOrderMappableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from PostOrderMappableContainer)
 
-  // type PostOrderMap(argument) specifiers; // Override PostOrderMappableContainer member
+  virtual void PostOrderMap(MapFun func) const override; // Override PostOrderMappableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from InOrderMappableContainer)
 
-  // type InOrderMap(arguments) specifiers; // Override InOrderMappableContainer member
+  virtual void InOrderMap(MapFun func) const override; // Override InOrderMappableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from BreadthMappableContainer)
 
-  // type BreadthMap(arguments) specifiers; // Override BreadthMappableContainer member
+  virtual void BreadthMap(MapFun func) const override; // Override BreadthMappableContainer member
 
 protected:
 
