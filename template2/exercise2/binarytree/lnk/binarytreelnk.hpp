@@ -50,7 +50,7 @@ public:
   /* ************************************************************************ */
 
   // Specific constructors
-BinaryTreeLnk(const TraversableContainer<Data>& right); // A binary tree obtained from a TraversableContainer
+  BinaryTreeLnk(const TraversableContainer<Data>& right); // A binary tree obtained from a TraversableContainer
   BinaryTreeLnk(const MappableContainer<Data>& right); // A binary tree obtained from a MappableContainer
   /* ************************************************************************ */
 
@@ -63,7 +63,7 @@ BinaryTreeLnk(const TraversableContainer<Data>& right); // A binary tree obtaine
   /* ************************************************************************ */
 
   // Destructor
-  virtual ~BinaryTreeLnk() {
+  virtual ~BinaryTreeLnk(){
     delete root;
   }
 
