@@ -41,8 +41,13 @@ public:
   protected:
 
     // Comparison operators
-    // type operator==(argument) specifiers; // Comparison of abstract types is possible, but is not visible.
-    // type operator!=(argument) specifiers; // Comparison of abstract types is possible, but is not visible.
+    bool operator==(const Node& right) const noexcept {
+      return (Element() == right.Element());
+    }; // Comparison of abstract types is possible, but should not be visible.
+    
+    bool operator!=(const Node& right) const noexcept {
+      return !(operator==(right));
+    }; // Comparison of abstract types is possible, but should not be visible.
 
   public:
 
