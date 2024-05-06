@@ -37,8 +37,8 @@ public:
   /* ************************************************************************ */
 
   // Specific constructors
-  // BST(argument) specifiers; // A bst obtained from a TraversableContainer
-  // BST(argument) specifiers; // A bst obtained from a MappableContainer
+  BST(const TraversableContainer<Data>& right);// A bst obtained from a TraversableContainer
+  BST(MappableContainer<Data>&& right) noexcept; // A bst obtained from a MappableContainer
 
   /* ************************************************************************ */
 
