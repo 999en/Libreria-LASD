@@ -50,7 +50,7 @@ public:
   /* ************************************************************************ */
 
   // Specific constructors
-//TO DO MARY SOMMELLA      // BinaryTreeLnk(argument) specifiers; // A binary tree obtained from a TraversableContainer
+BinaryTreeLnk(const TraversableContainer<Data>& right); // A binary tree obtained from a TraversableContainer
   BinaryTreeLnk(const MappableContainer<Data>& right); // A binary tree obtained from a MappableContainer
   /* ************************************************************************ */
 
