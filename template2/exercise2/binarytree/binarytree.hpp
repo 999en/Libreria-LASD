@@ -85,7 +85,6 @@ public:
     virtual const Node& RightChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
 
   };
-
   /* ************************************************************************ */
 
   
@@ -278,25 +277,25 @@ protected:
 
 // Auxiliary member function (for PreOrderMappableContainer)
 
-  void RecursivePreOrderMap(const Node *node, MapFun func) const; // Accessory function executing from one node of the tree
+  void RecursivePreOrderMap(const MutableNode *node, MapFun func) const; // Accessory function executing from one node of the tree
 
   /* ************************************************************************ */
 
   // Auxiliary member function (for PostOrderMappableContainer)
 
-  void RecursivePostOrderMap(const Node *node, MapFun func) const; // Accessory function executing from one node of the tree
+  void RecursivePostOrderMap(const MutableNode *node, MapFun func) const; // Accessory function executing from one node of the tree
 
   /* ************************************************************************ */
 
   // Auxiliary member function (for InOrderMappableContainer)
 
-  void RecursiveInOrderMap(const Node *node, MapFun func) const; // Accessory function executing from one node of the tree
+  void RecursiveInOrderMap(const MutableNode *node, MapFun func) const; // Accessory function executing from one node of the tree
 
   /* ************************************************************************ */
 
   // Auxiliary member function (for BreadthMappableContainer)
 
-  void NotRecursiveBreadthMap(const Node *node, MapFun func) const; // Accessory function executing from one node of the tree
+  void NotRecursiveBreadthMap(const MutableNode *node, MapFun func) const; // Accessory function executing from one node of the tree
 
 };
 
