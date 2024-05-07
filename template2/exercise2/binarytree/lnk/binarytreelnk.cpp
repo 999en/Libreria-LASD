@@ -5,14 +5,13 @@ namespace lasd
 
     /* ************************************************************************** */
 
-
     template <typename Data>
     BinaryTreeLnk<Data>::BinaryTreeLnk(TraversableContainer<Data> &&right)
     {
         size = right.Size();
         QueueVec<NodeLnk **> queue;
         queue.Enqueue(&root);
-        right.Map(
+        right.Traverse(
             [&queue](const Data &dat)
             {
                 NodeLnk *&current = *queue.HeadNDequeue();
@@ -21,7 +20,6 @@ namespace lasd
                 queue.Enqueue(&current->RChild);
             });
     }
-
     template <typename Data>
     BinaryTreeLnk<Data>::BinaryTreeLnk(const MappableContainer<Data> &right)
     {
@@ -37,6 +35,8 @@ namespace lasd
                 queue.Enqueue(&current->RChild);
             });
     }
+
+
     template <typename Data>
     BinaryTreeLnk<Data>::BinaryTreeLnk(const BinaryTreeLnk &right)
     {
@@ -95,23 +95,24 @@ namespace lasd
         RChild = (right.RChild != nullptr) ? new NodeLnk(*right.RChild) : nullptr;
     }
 
-    template <typename Data>
-    BinaryTreeLnk<Data>::NodeLnk::NodeLnk(NodeLnk &&right) noexcept
-    {
-        std::swap(element, right->element);
-        std::swap(LChild, right->LChild);
-        std::swap(RChild, right->RChild);
-    }
+  template <typename Data>
+  BinaryTreeLnk<Data>::NodeLnk::NodeLnk(NodeLnk &&right) noexcept
+  {
+      std::swap(element, right.element);
+      std::swap(LChild, right.LChild);
+      std::swap(RChild, right.RChild);
+  }
+
 
     template <typename Data>
-    BinaryTreeLnk<Data>::NodeLnk &BinaryTreeLnk<Data>::NodeLnk::operator=(const NodeLnk &right)
+    typename BinaryTreeLnk<Data>::NodeLnk &BinaryTreeLnk<Data>::NodeLnk::operator=(const NodeLnk &right)
     {
         element(right->element);
         return *this;
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::NodeLnk &BinaryTreeLnk<Data>::NodeLnk::operator=(NodeLnk &&right) noexcept
+    typename BinaryTreeLnk<Data>::NodeLnk &BinaryTreeLnk<Data>::NodeLnk::operator=(NodeLnk &&right) noexcept
     {
         std::swap(element, right->element);
         return *this;
