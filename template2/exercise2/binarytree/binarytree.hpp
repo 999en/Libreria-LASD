@@ -21,10 +21,10 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class BinaryTree : virtual public PreOrderMappableContainer<Data>,
-                   virtual public PostOrderMappableContainer<Data>,
-                   virtual public InOrderMappableContainer<Data>,
-                   virtual public BreadthMappableContainer<Data> {  
+class BinaryTree : virtual public PreOrderTraversableContainer<Data>,
+                   virtual public PostOrderTraversableContainer<Data>,
+                   virtual public InOrderTraversableContainer<Data>,
+                   virtual public BreadthTraversableContainer<Data> {  
 
 private:
 
