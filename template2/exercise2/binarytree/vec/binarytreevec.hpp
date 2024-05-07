@@ -96,7 +96,7 @@ using BinaryTree<Data>::PostOrderMap;
   /* ************************************************************************ */
 
   // Specific constructors
-  BinaryTreeVec(const TraversableContainer<Data>& right); // A binary tree obtained from a TraversableContainer
+  BinaryTreeVec(TraversableContainer<Data>&& right); // A binary tree obtained from a TraversableContainer
   BinaryTreeVec(const MappableContainer<Data>& right);   // A binary tree obtained from a MappableContainer
   /* ************************************************************************ */
 
