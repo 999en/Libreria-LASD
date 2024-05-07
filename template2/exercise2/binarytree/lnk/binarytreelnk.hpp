@@ -25,33 +25,112 @@ protected:
 
   struct NodeLnk : virtual MutableBinaryTree<Data>::MutableNode {  // Must extend MutableNode
 
-  private:
+  friend class BinaryTreeLnk<Data>;
 
-    // ...
+  private:
 
   protected:
 
-    // ...
-
   public:
 
-    // ...
+    Data element {};
+    NodeLnk* LChild = nullptr;
+    NodeLnk* RChild = nullptr;
+
+
+    /* ********************************************************************** */
+
+    //Specific Constructor
+
+    NodeLnk(const Data& right) : element(right) {};
+    NodeLnk(Data&& right) noexcept : element(std::move(right)) {};
+
+    /* ********************************************************************** */
+
+    //Copy Constructor
+    NodeLnk(const NodeLnk& right);
+
+    //Move Constructor
+    NodeLnk(NodeLnk&& right) noexcept;
+
+    /* ********************************************************************** */
+
+    // Destructor
+    virtual ~NodeLnk();
+
+    /* ********************************************************************** */
+
+    //Copy Assignament
+    NodeLnk& operator=(const NodeLnk& right);
+
+    //Move Assignament
+    NodeLnk& operator=(NodeLnk&& right) noexcept;
+
+    /* ********************************************************************** */
+
+    // Specific member functions
+
+    virtual bool inline IsLeaf() const noexcept override { return (!(HasLeftChild() || HasRightChild())); };
+
+    virtual inline Data& Element() noexcept override {
+      return element;
+    };
+
+    virtual const inline Data& Element() const noexcept override {
+      return element;
+    };
+
+    virtual bool inline HasLeftChild() const noexcept override{
+      return (LChild == nullptr ? false : true);
+    };
+
+    virtual bool inline HasRightChild() const noexcept override{
+      return (RChild == nullptr ? false : true);
+    };
+
+    virtual inline NodeLnk& LeftChild() override {
+      if(IsLeaf()) {
+        throw std::out_of_range("Left Child does not exists.");
+      }
+      return *LChild;
+    }; 
+
+    virtual const inline NodeLnk& LeftChild() const override {
+      if(IsLeaf()) {
+        throw std::out_of_range("Left Child does not exists.");
+      }
+      return *LChild;
+    }; 
+
+    virtual inline NodeLnk& RightChild() override {
+      if(IsLeaf()) {
+        throw std::out_of_range("Right Child does not exists.");
+      }
+      return *RChild;
+    };
+
+    virtual const inline NodeLnk& RightChild() const override {
+      if(IsLeaf()) {
+        throw std::out_of_range("Right Child does not exists.");
+      }
+      return *RChild;
+    };
 
   };
 
-public:
+  NodeLnk* root = nullptr;
 
+public:
 
   // Default constructor
   BinaryTreeLnk() = default;
 
-  // BinaryTreeLnk() specifiers;
-
   /* ************************************************************************ */
 
   // Specific constructors
-  BinaryTreeLnk(const TraversableContainer<Data>& right); // A binary tree obtained from a TraversableContainer
+  BinaryTreeLnk(TraversableContainer<Data>&& right); // A binary tree obtained from a TraversableContainer
   BinaryTreeLnk(const MappableContainer<Data>& right); // A binary tree obtained from a MappableContainer
+
   /* ************************************************************************ */
 
   // Copy constructor
@@ -63,7 +142,7 @@ public:
   /* ************************************************************************ */
 
   // Destructor
-  virtual ~BinaryTreeLnk(){
+  virtual ~BinaryTreeLnk() {
     delete root;
   }
 
