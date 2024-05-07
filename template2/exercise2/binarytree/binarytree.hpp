@@ -119,9 +119,7 @@ public:
 
    using typename TraversableContainer<Data>::TraverseFun;
 
-  virtual void Traverse(TraverseFun func) const override {
-    PreOrderTraverse(func);
-  }; // Override TraversableContainer member
+  virtual void Traverse(TraverseFun func, void* acc) const override;  // Override TraversableContainer member
 
   /* ************************************************************************ */
 
