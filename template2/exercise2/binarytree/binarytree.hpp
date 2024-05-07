@@ -253,29 +253,29 @@ public:
 
   // Specific member function (inherited from PreOrderMappableContainer)
 
-  virtual void PreOrderMap(MapFun func) const override; // Override PreOrderMappableContainer member
+  inline virtual void PreOrderMap(MapFun func) const override; // Override PreOrderMappableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from PostOrderMappableContainer)
 
-  virtual void PostOrderMap(MapFun func) const override; // Override PostOrderMappableContainer member
+  inline virtual void PostOrderMap(MapFun func) const override; // Override PostOrderMappableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from InOrderMappableContainer)
 
-  virtual void InOrderMap(MapFun func) const override; // Override InOrderMappableContainer member
+  inline virtual void InOrderMap(MapFun func) const override; // Override InOrderMappableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from BreadthMappableContainer)
 
-  virtual void BreadthMap(MapFun func) const override; // Override BreadthMappableContainer member
+  inline virtual void BreadthMap(MapFun func) const override; // Override BreadthMappableContainer member
 
 protected:
 
-// Auxiliary member function (for PreOrderMappableContainer)
+  // Auxiliary member function (for PreOrderMappableContainer)
 
   void RecursivePreOrderMap(const MutableNode *node, MapFun func) const; // Accessory function executing from one node of the tree
 
