@@ -147,10 +147,30 @@ public:
   virtual void BreadthTraverse(TraverseFun func) const override; // Override BreadthTraversableContainer member
 
 protected:
+ // Auxiliary member function (for PreOrderMappableContainer)
 
-  // Auxiliary functions, if necessary!
+  void RecursivePreOrderTraverse(const Node *node, TraverseFun func) const; // Accessory function executing from one node of the tree
+
+  /* ************************************************************************ */
+
+  // Auxiliary member function (for PostOrderMappableContainer)
+
+  void RecursivePostOrderTraverse(const Node *node, TraverseFun func) const; // Accessory function executing from one node of the tree
+
+  /* ************************************************************************ */
+
+  // Auxiliary member function (for InOrderMappableContainer)
+
+  void RecursiveInOrderTraverse(const Node *node, TraverseFun func) const; // Accessory function executing from one node of the tree
+
+  /* ************************************************************************ */
+
+  // Auxiliary member function (for BreadthMappableContainer)
+
+  void NotRecursiveBreadthTraverse(const Node *node, TraverseFun func) const; // Accessory function executing from one node of the tree
 
 };
+
 
 /* ************************************************************************** */
 
@@ -227,7 +247,7 @@ public:
    using typename MappableContainer<Data>::MapFun;
 
   virtual void inline Map(MapFun func) override {
-    PreOrderTraverse(func);
+    PreOrderMap(func);
   }; // Override MappableContainer member
 
   /* ************************************************************************ */
@@ -256,7 +276,27 @@ public:
 
 protected:
 
-  // Auxiliary functions, if necessary!
+// Auxiliary member function (for PreOrderMappableContainer)
+
+  void RecursivePreOrderMap(const Node *node, MapFun func) const; // Accessory function executing from one node of the tree
+
+  /* ************************************************************************ */
+
+  // Auxiliary member function (for PostOrderMappableContainer)
+
+  void RecursivePostOrderMap(const Node *node, MapFun func) const; // Accessory function executing from one node of the tree
+
+  /* ************************************************************************ */
+
+  // Auxiliary member function (for InOrderMappableContainer)
+
+  void RecursiveInOrderMap(const Node *node, MapFun func) const; // Accessory function executing from one node of the tree
+
+  /* ************************************************************************ */
+
+  // Auxiliary member function (for BreadthMappableContainer)
+
+  void NotRecursiveBreadthMap(const Node *node, MapFun func) const; // Accessory function executing from one node of the tree
 
 };
 
