@@ -85,7 +85,6 @@ public:
     virtual const Node& RightChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
 
   };
-
   /* ************************************************************************ */
 
   
