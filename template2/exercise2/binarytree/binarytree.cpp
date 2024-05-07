@@ -117,35 +117,35 @@ void BinaryTree<Data>::NotRecursiveBreadthTraverse(const Node* node, TraverseFun
 
 
 template <typename Data>
-inline void MutableBinaryTree<Data>::PreOrderMap(MapFun func) {
+inline void MutableBinaryTree<Data>::PreOrderMap(MapFun func)  const{
     if(!(this->Empty())) {
-        RecursivePreOrderMap(&this->Root(), func);
+        RecursivePreOrderMapMap(&this->Root(), func);
     }
 }
 
 template <typename Data>
-void MutableBinaryTree<Data>::PostOrderMap(MapFun func){
+void MutableBinaryTree<Data>::PostOrderMap(MapFun func) const {
     if(!(this->Empty())) {
         RecursivePostOrderMap(&this->Root(), func);
     }
 }
 
 template <typename Data>
-void MutableBinaryTree<Data>::InOrderMap(MapFun func){
+void MutableBinaryTree<Data>::InOrderMap(MapFun func) const {
     if(!(this->Empty())) {
        RecursiveInOrderMap(&this->Root(), func);
     }
 }
 
 template <typename Data>
-void MutableBinaryTree<Data>::BreadthMap(MapFun func){
+void MutableBinaryTree<Data>::BreadthMap(MapFun func) const{
     if(!(this->Empty())) {
         NotRecursiveBreadthMap(&this->Root(), func);
     }
 }
 
 template <typename Data>
-void MutableBinaryTree<Data>::RecursivePreOrderMap(MutableNode* node, MapFun func) {
+void MutableBinaryTree<Data>::RecursivePreOrderMap(const MutableNode* node, MapFun func) const{
     func(node->Element());
     if(node->HasLeftChild()) {
         RecursivePreOrderMap(&node->LeftChild(), func);
@@ -156,7 +156,7 @@ void MutableBinaryTree<Data>::RecursivePreOrderMap(MutableNode* node, MapFun fun
 }
 
 template <typename Data>
-void MutableBinaryTree<Data>::RecursivePostOrderMap(MutableNode* node, MapFun func){
+void MutableBinaryTree<Data>::RecursivePostOrderMap(const MutableNode* node, MapFun func) const{
     if(node->HasLeftChild()) {
         RecursivePostOrderMap(&node->LeftChild(), func);
     }
@@ -167,7 +167,7 @@ void MutableBinaryTree<Data>::RecursivePostOrderMap(MutableNode* node, MapFun fu
 }
 
 template <typename Data>
-void MutableBinaryTree<Data>::RecursiveInOrderMap(MutableNode* node, MapFun func){
+void MutableBinaryTree<Data>::RecursiveInOrderMap(const MutableNode* node, MapFun func) const{
     if(node->HasLeftChild()) {
         RecursiveInOrderMap(&node->LeftChild(), func);
     }
@@ -178,7 +178,7 @@ void MutableBinaryTree<Data>::RecursiveInOrderMap(MutableNode* node, MapFun func
 }
 
 template <typename Data>
-void MutableBinaryTree<Data>::NotRecursiveBreadthMap(MutableNode* node, MapFun func){
+void MutableBinaryTree<Data>::NotRecursiveBreadthMap(const MutableNode* node, MapFun func) const{
     lasd::QueueVec<MutableBinaryTree<Data>::MutableNode *> queue;
     if(node!=nullptr) {
         queue.Enqueue(node);
