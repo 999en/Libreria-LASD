@@ -21,11 +21,11 @@ inline bool BinaryTree<Data>::operator==(const BinaryTree &right) const noexcept
 }
 
 template <typename Data>
-void BinaryTree<Data>::Traverse(TraverseFun func, void *acc) const {
+void BinaryTree<Data>::Traverse(TraverseFun func) const {
     if(!this->Empty()) {
         PreOrderMap( 
-                [&func, &acc](const Data& dat) {
-                    func(dat, acc);
+                [&func](const Data& dat) {
+                    func(dat);
                 }
             );
     }
@@ -117,28 +117,28 @@ void BinaryTree<Data>::NotRecursiveBreadthTraverse(const Node* node, TraverseFun
 
 
 template <typename Data>
-inline void MutableBinaryTree<Data>::PreOrderMap(MapFun func)  const{
+inline void MutableBinaryTree<Data>::PreOrderMap(MapFun func)  {
     if(!(this->Empty())) {
-        RecursivePreOrderMapMap(&this->Root(), func);
+        RecursivePreOrderMap(&this->Root(), func);
     }
 }
 
 template <typename Data>
-void MutableBinaryTree<Data>::PostOrderMap(MapFun func) const {
+void MutableBinaryTree<Data>::PostOrderMap(MapFun func) {
     if(!(this->Empty())) {
         RecursivePostOrderMap(&this->Root(), func);
     }
 }
 
 template <typename Data>
-void MutableBinaryTree<Data>::InOrderMap(MapFun func) const {
+void MutableBinaryTree<Data>::InOrderMap(MapFun func) {
     if(!(this->Empty())) {
        RecursiveInOrderMap(&this->Root(), func);
     }
 }
 
 template <typename Data>
-void MutableBinaryTree<Data>::BreadthMap(MapFun func) const{
+void MutableBinaryTree<Data>::BreadthMap(MapFun func){
     if(!(this->Empty())) {
         NotRecursiveBreadthMap(&this->Root(), func);
     }
