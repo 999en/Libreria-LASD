@@ -6,12 +6,12 @@ namespace lasd {
 
 template <typename Data>
 BinaryTreeVec<Data>::NodeVec::NodeVec(const Data &dat, int i, BinaryTreeVec<Data>* bt) : bt(bt), index(i) {
-    bt->Elements[i] = dat;
+    bt->elem[i] = dat;
 }
 
 template <typename Data>
 BinaryTreeVec<Data>::NodeVec::NodeVec(Data&& dat, int i, BinaryTreeVec<Data>* bt) : bt(bt), index(i) {
-    std::swap(bt->Elements[i], dat);
+    std::swap(bt->elem[i], dat);
 }
 
 template <typename Data>
@@ -92,7 +92,7 @@ template <typename Data>
 BinaryTreeVec<Data>::BinaryTreeVec(const BinaryTreeVec<Data>& right) {
     Resize(right.size);
     Nodes = new NodeVec[size];
-    std::copy(right.Elements, right.Elements + size, Elements);
+    std::copy(right.elem, right.elem + size, elem);
     std::copy(right.Nodes, right.Nodes + size, Nodes);
     for (int i = 0; i < size; i++) {
         Nodes[i].bt = this;
@@ -102,7 +102,7 @@ BinaryTreeVec<Data>::BinaryTreeVec(const BinaryTreeVec<Data>& right) {
 template <typename Data>
 BinaryTreeVec<Data>::BinaryTreeVec(BinaryTreeVec<Data>&& right) noexcept{
     std::swap(size, right.size);
-    std::swap(Elements, right.Elements);
+    std::swap(elem, right.elem);
     std::swap(Nodes, right.Nodes);
     for (int i = 0; i < size; i++) {
         Nodes[i].bt = this;
@@ -119,7 +119,7 @@ BinaryTreeVec<Data>& BinaryTreeVec<Data>::operator=(const BinaryTreeVec<Data>& r
         Clear();
         Resize(right.size);
         Nodes = new NodeVec[size];
-        std::copy(right.Elements, right.Elements + size, Elements);
+        std::copy(right.elem, right.elem + size, elem);
         std::copy(right.Nodes, right.Nodes + size, Nodes);
         for (int i = 0; i < size; i++) {
             Nodes[i].bt = this;
@@ -133,7 +133,7 @@ BinaryTreeVec<Data>& BinaryTreeVec<Data>::operator=(BinaryTreeVec<Data>&& right)
     if (this != &right) {
         Clear();
         std::swap(size, right.size);
-        std::swap(Elements, right.Elements);
+        std::swap(elem, right.elem);
         std::swap(Nodes, right.Nodes);
         for (int i = 0; i < size; i++) {
             Nodes[i].bt = this;
