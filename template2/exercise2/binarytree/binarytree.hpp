@@ -118,7 +118,7 @@ public:
 
    using typename TraversableContainer<Data>::TraverseFun;
 
-  virtual void Traverse(TraverseFun func, void* acc) const override;  // Override TraversableContainer member
+  virtual void Traverse(TraverseFun func) const override;  // Override TraversableContainer member
 
   /* ************************************************************************ */
 
@@ -253,25 +253,25 @@ public:
 
   // Specific member function (inherited from PreOrderMappableContainer)
 
-  inline virtual void PreOrderMap(MapFun func) const override; // Override PreOrderMappableContainer member
+  inline virtual void PreOrderMap(MapFun func) override; // Override PreOrderMappableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from PostOrderMappableContainer)
 
-  inline virtual void PostOrderMap(MapFun func) const override; // Override PostOrderMappableContainer member
+  inline virtual void PostOrderMap(MapFun func) override; // Override PostOrderMappableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from InOrderMappableContainer)
 
-  inline virtual void InOrderMap(MapFun func) const override; // Override InOrderMappableContainer member
+  inline virtual void InOrderMap(MapFun func) override; // Override InOrderMappableContainer member
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from BreadthMappableContainer)
 
-  inline virtual void BreadthMap(MapFun func) const override; // Override BreadthMappableContainer member
+  inline virtual void BreadthMap(MapFun func) override; // Override BreadthMappableContainer member
 
 protected:
 

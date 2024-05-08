@@ -64,10 +64,10 @@ protected:
 
     // Specific member functions
     inline virtual Data& Element() noexcept override { 
-      return bt->Elements[index]; 
+      return bt->elem[index];
     }
     inline virtual const Data& Element() const noexcept override { 
-      return bt->Elements[index]; 
+      return bt->elem[index]; 
     }
 
     virtual bool HasLeftChild() const noexcept override;
@@ -81,7 +81,7 @@ protected:
   };
 
   using Container::size;
-  using Vector<Data>::Elements;
+  using Vector<Data>::elem;
   NodeVec* Nodes = nullptr;
 
 public:
@@ -96,7 +96,7 @@ using BinaryTree<Data>::PostOrderMap;
   /* ************************************************************************ */
 
   // Specific constructors
-  BinaryTreeVec(const TraversableContainer<Data>& right); // A binary tree obtained from a TraversableContainer
+  BinaryTreeVec(TraversableContainer<Data>&& right) noexcept; // A binary tree obtained from a TraversableContainer
   BinaryTreeVec(const MappableContainer<Data>& right);   // A binary tree obtained from a MappableContainer
   /* ************************************************************************ */
 
@@ -167,10 +167,29 @@ virtual void BreadthTraverse(TraverseFun) const override;// Override BreadthTrav
   // Specific member function (inherited from BreadthMappableContainer)
 using typename MappableContainer<Data>::MapFun;
 virtual void BreadthMap(MapFun func) const override; // Override BreadthMappableContainer member
+  void PreOrderMap(MapFun func) const override{
+    BinaryTree<Data>::PreOrderMap(func);
+  }
 
-protected:
+  void PreOrderMap(MapFun func) override{
+    MutableBinaryTree<Data>::PreOrderMap(func);
+  }  
 
-  // Auxiliary functions, if necessary!
+  void PostOrderMap(MapFun func) const override{
+    BinaryTree<Data>::PostOrderMap(func);
+  }
+
+  void PostOrderMap(MapFun func) override{
+    MutableBinaryTree<Data>::PostOrderMap(func);
+  }
+
+  void Map(MapFun func) const override{
+    BinaryTree<Data>::Map(func); 
+  }
+
+  void Map(MapFun func) override{
+    MutableBinaryTree<Data>::Map(func); 
+  }
 
 };
 

@@ -180,7 +180,7 @@ namespace lasd {
     public:
 
         // Destructor
-        virtual ~InOrderTraversableContainer() = delete;
+        virtual ~InOrderTraversableContainer() = default;
 
         /* ************************************************************************ */
 
@@ -202,7 +202,7 @@ namespace lasd {
 
         using typename TraversableContainer<Data>::TraverseFun;
 
-        void InOrderTraverse(TraverseFun) const = 0;
+        virtual void InOrderTraverse(TraverseFun) const = 0;
 
         template <typename Accumulator>
         using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
@@ -253,7 +253,7 @@ namespace lasd {
 
         using typename TraversableContainer<Data>::TraverseFun;
 
-        void BreadthTraverse(TraverseFun) const = 0;
+        virtual void BreadthTraverse(TraverseFun) const = 0;
 
         template <typename Accumulator>
         using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
