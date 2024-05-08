@@ -64,10 +64,10 @@ protected:
 
     // Specific member functions
     inline virtual Data& Element() noexcept override { 
-      return bt->Elements[index]; 
+      return bt->elem[index];
     }
     inline virtual const Data& Element() const noexcept override { 
-      return bt->Elements[index]; 
+      return bt->elem[index]; 
     }
 
     virtual bool HasLeftChild() const noexcept override;
@@ -81,7 +81,7 @@ protected:
   };
 
   using Container::size;
-  using Vector<Data>::Elements;
+  using Vector<Data>::elem;
   NodeVec* Nodes = nullptr;
 
 public:
