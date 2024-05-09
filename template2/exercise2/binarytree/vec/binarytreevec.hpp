@@ -87,9 +87,9 @@ protected:
 public:
 
   
-  using BinaryTree<Data>::Map;
-using BinaryTree<Data>::PreOrderMap;
-using BinaryTree<Data>::PostOrderMap;
+  using BinaryTree<Data>::Traverse;
+  using BinaryTree<Data>::PreOrderTraverse;
+  using BinaryTree<Data>::PostOrderTraverse;
   // Default constructor
   BinaryTreeVec() = default;
 
@@ -163,9 +163,9 @@ using BinaryTree<Data>::PostOrderMap;
 virtual void BreadthTraverse(TraverseFun) const override;// Override BreadthTraversableContainer member
 
   /* ************************************************************************ */
+using typename MappableContainer<Data>::MapFun;
 
   // Specific member function (inherited from BreadthMappableContainer)
-using typename MappableContainer<Data>::MapFun;
 virtual void BreadthMap(MapFun func) const override; // Override BreadthMappableContainer member
   void PreOrderMap(MapFun func) const override{
     BinaryTree<Data>::PreOrderMap(func);

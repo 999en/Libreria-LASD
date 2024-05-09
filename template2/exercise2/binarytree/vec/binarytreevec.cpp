@@ -168,3 +168,4 @@ typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::Root() {
 /* ************************************************************************** */
 
 }
+
