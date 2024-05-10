@@ -237,7 +237,7 @@ public:
 
   // Specific member functions
 
-  virtual MutableNode& Root() const = 0; // (concrete function must throw std::length_error when empty)
+  virtual MutableNode& Root() = 0; // (concrete function must throw std::length_error when empty)
 
   /* ************************************************************************ */
 

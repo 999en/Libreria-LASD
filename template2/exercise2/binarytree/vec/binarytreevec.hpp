@@ -166,25 +166,25 @@ virtual void BreadthTraverse(TraverseFun) const override;// Override BreadthTrav
 using typename MappableContainer<Data>::MapFun;
 
   // Specific member function (inherited from BreadthMappableContainer)
-virtual void BreadthMap(MapFun func) const override; // Override BreadthMappableContainer member
-  void PreOrderMap(MapFun func) const override{
-    BinaryTree<Data>::PreOrderMap(func);
+virtual void BreadthMap(MapFun func) override; // Override BreadthMappableContainer member
+  void PreOrderTraverse(TraverseFun func) const override{
+    BinaryTree<Data>::PreOrderTraverse(func);
   }
 
   void PreOrderMap(MapFun func) override{
     MutableBinaryTree<Data>::PreOrderMap(func);
   }  
 
-  void PostOrderMap(MapFun func) const override{
-    BinaryTree<Data>::PostOrderMap(func);
+  void PostOrderTraverse(TraverseFun func) const override{
+    BinaryTree<Data>::PostOrderTraverse(func);
   }
 
   void PostOrderMap(MapFun func) override{
     MutableBinaryTree<Data>::PostOrderMap(func);
   }
 
-  void Map(MapFun func) const override{
-    BinaryTree<Data>::Map(func); 
+  void Traverse(TraverseFun func) const override{
+    BinaryTree<Data>::Traverse(func); 
   }
 
   void Map(MapFun func) override{
