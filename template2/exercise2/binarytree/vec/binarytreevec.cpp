@@ -24,6 +24,7 @@ bool BinaryTreeVec<Data>::NodeVec::HasRightChild() const noexcept {
     return index * 2 + 2 < bt->size;
 }
 
+
 template <typename Data>
 const typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::NodeVec::LeftChild() const {
     if (HasLeftChild()) {
@@ -53,6 +54,7 @@ typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::NodeVec::LeftChild()
         throw std::out_of_range("BinaryTreeVec<Data>::NodeVec::LeftChild(): Not found!");
     }
 }
+
 
 template <typename Data>
 typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::NodeVec::RightChild() {
