@@ -215,8 +215,8 @@ public:
 
     virtual Data& Element() noexcept = 0; // Mutable access to the element (concrete function should not throw exceptions)
 
-    virtual MutableNode& LeftChild() = 0; // (concrete function must throw std::out_of_range when not existent)
-    virtual MutableNode& RightChild() = 0; // (concrete function must throw std::out_of_range when not existent)
+    virtual const MutableNode& LeftChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
+    virtual const MutableNode& RightChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
 
   };
 
@@ -237,7 +237,7 @@ public:
 
   // Specific member functions
 
-  virtual MutableNode& Root() = 0; // (concrete function must throw std::length_error when empty)
+  virtual const MutableNode& Root() const = 0; // (concrete function must throw std::length_error when empty)
 
   /* ************************************************************************ */
 
