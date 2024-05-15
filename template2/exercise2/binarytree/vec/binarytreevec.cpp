@@ -69,7 +69,7 @@ typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::NodeVec::RightChild(
 /* ************************************************************************** */
 
 template <typename Data>
-BinaryTreeVec<Data>::BinaryTreeVec(TraversableContainer<Data> &&right) noexcept {
+BinaryTreeVec<Data>::BinaryTreeVec(const TraversableContainer<Data> &right) {
     Resize(right.Size());
     Nodes = new NodeVec[size];
     int i = 0;
@@ -80,7 +80,7 @@ BinaryTreeVec<Data>::BinaryTreeVec(TraversableContainer<Data> &&right) noexcept 
 }
 
 template <typename Data>
-BinaryTreeVec<Data>::BinaryTreeVec(const MappableContainer<Data>& right) {
+BinaryTreeVec<Data>::BinaryTreeVec(MappableContainer<Data>&& right) noexcept {
     Resize(right.Size());
     Nodes = new NodeVec[size];
     int i = 0;

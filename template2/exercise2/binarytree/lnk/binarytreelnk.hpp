@@ -128,9 +128,9 @@ public:
   /* ************************************************************************ */
 
   // Specific constructors
-  BinaryTreeLnk(TraversableContainer<Data>&& right); // A binary tree obtained from a TraversableContainer
-  BinaryTreeLnk(const MappableContainer<Data>& right); // A binary tree obtained from a MappableContainer
 
+  BinaryTreeLnk(const TraversableContainer<Data>& right) ; // A binary tree obtained from a TraversableContainer
+  BinaryTreeLnk(MappableContainer<Data>&& right) noexcept ;   // A binary tree obtained from a MappableContainer
   /* ************************************************************************ */
 
   // Copy constructor

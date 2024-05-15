@@ -6,7 +6,7 @@ namespace lasd
     /* ************************************************************************** */
 
     template <typename Data>
-    BinaryTreeLnk<Data>::BinaryTreeLnk(TraversableContainer<Data> &&right)
+    BinaryTreeLnk<Data>::BinaryTreeLnk(const TraversableContainer<Data> &right)
     {
         size = right.Size();
         QueueVec<NodeLnk **> queue;
@@ -21,7 +21,7 @@ namespace lasd
             });
     }
     template <typename Data>
-    BinaryTreeLnk<Data>::BinaryTreeLnk(const MappableContainer<Data> &right)
+    BinaryTreeLnk<Data>::BinaryTreeLnk(MappableContainer<Data> &&right) noexcept
     {
         size = right.Size();
         QueueVec<NodeLnk **> queue;

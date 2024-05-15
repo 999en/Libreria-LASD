@@ -36,7 +36,7 @@ protected:
 
     BinaryTreeVec<Data>* bt = nullptr;
     int index;
-
+delet
     // Specific constructor
     NodeVec() {
       bt = nullptr;
@@ -96,8 +96,9 @@ public:
   /* ************************************************************************ */
 
   // Specific constructors
-  BinaryTreeVec(TraversableContainer<Data>&& right) noexcept; // A binary tree obtained from a TraversableContainer
-  BinaryTreeVec(const MappableContainer<Data>& right);   // A binary tree obtained from a MappableContainer
+  BinaryTreeVec(const TraversableContainer<Data>& right) ; // A binary tree obtained from a TraversableContainer
+  BinaryTreeVec(MappableContainer<Data>&& right) noexcept ;   // A binary tree obtained from a MappableContainer
+
   /* ************************************************************************ */
 
   // Copy constructor
@@ -167,6 +168,7 @@ using typename MappableContainer<Data>::MapFun;
 
   // Specific member function (inherited from BreadthMappableContainer)
 virtual void BreadthMap(MapFun func) override; // Override BreadthMappableContainer member
+
   void PreOrderTraverse(TraverseFun func) const override{
     BinaryTree<Data>::PreOrderTraverse(func);
   }
