@@ -36,7 +36,7 @@ protected:
 
     BinaryTreeVec<Data>* bt = nullptr;
     int index;
-delet
+
     // Specific constructor
     NodeVec() {
       bt = nullptr;
