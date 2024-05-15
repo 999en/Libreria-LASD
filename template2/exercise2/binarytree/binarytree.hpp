@@ -80,10 +80,8 @@ public:
 
     virtual bool HasRightChild() const noexcept = 0; // (concrete function should not throw exceptions)
 
-    virtual Node& LeftChild() = 0;
     virtual const Node& LeftChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
 
-    virtual Node& RightChild() = 0;
     virtual const Node& RightChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
 
   };
@@ -114,6 +112,7 @@ public:
   // Specific member functions
 
   virtual const Node& Root() const = 0; // (concrete function must throw std::length_error when empty)
+
   /* ************************************************************************ */
 
   // Specific member function (inherited from TraversableContainer)
@@ -217,8 +216,8 @@ public:
 
     virtual Data& Element() noexcept = 0; // Mutable access to the element (concrete function should not throw exceptions)
 
-    virtual const MutableNode& LeftChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
-    virtual const MutableNode& RightChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
+    virtual  MutableNode& LeftChild()  = 0; // (concrete function must throw std::out_of_range when not existent)
+    virtual  MutableNode& RightChild()  = 0; // (concrete function must throw std::out_of_range when not existent)
 
   };
 
