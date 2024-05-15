@@ -80,8 +80,10 @@ public:
 
     virtual bool HasRightChild() const noexcept = 0; // (concrete function should not throw exceptions)
 
+    virtual Node& LeftChild() = 0;
     virtual const Node& LeftChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
 
+    virtual Node& RightChild() = 0;
     virtual const Node& RightChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
 
   };
