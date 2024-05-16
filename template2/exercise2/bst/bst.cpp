@@ -211,7 +211,7 @@ void BST<Data>::Clear() noexcept {
 }
 
   template <typename Data>
-  const NodeLnk& BST<Data>::Root() const noexcept{
+  const typename BinaryTreeLnk<Data>::NodeLnk& BST<Data>::Root() const noexcept{
         BinaryTreeLnk<Data>::Root();
   }
 
