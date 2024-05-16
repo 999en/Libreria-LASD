@@ -27,6 +27,9 @@ protected:
 
   using BinaryTreeLnk<Data>::NodeLnk;
 
+  using Container::size;
+  using BinaryTreeLnk<Data>::root;
+
   // ...
 
 public:

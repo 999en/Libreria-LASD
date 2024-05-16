@@ -210,6 +210,11 @@ void BST<Data>::Clear() noexcept {
   BinaryTreeLnk<Data>::Clear();
 }
 
+  template <typename Data>
+  const NodeLnk& BST<Data>::Root() const noexcept{
+        BinaryTreeLnk<Data>::Root();
+  }
+
 template <typename Data>
 inline Data BST<Data>::DataNDelete(NodeLnk *node) {
   Data value;
