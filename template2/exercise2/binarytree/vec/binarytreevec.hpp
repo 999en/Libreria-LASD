@@ -74,11 +74,11 @@ protected:
     virtual bool HasLeftChild() const noexcept override;
     virtual bool HasRightChild() const noexcept override;
 
-    virtual NodeVec& LeftChild() override;
-    virtual const NodeVec& LeftChild() const override;
+    virtual NodeVec& LeftChild();
+    virtual const NodeVec& LeftChild() const;
 
-    virtual NodeVec& RightChild() override;
-    virtual const NodeVec& RightChild() const override;
+    virtual NodeVec& RightChild();
+    virtual const NodeVec& RightChild() const;
   };
 
   using Container::size;

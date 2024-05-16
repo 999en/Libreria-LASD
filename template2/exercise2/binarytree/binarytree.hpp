@@ -216,8 +216,10 @@ public:
 
     virtual Data& Element() noexcept = 0; // Mutable access to the element (concrete function should not throw exceptions)
 
-    virtual  MutableNode& LeftChild() = 0; // (concrete function must throw std::out_of_range when not existent)
-    virtual  MutableNode& RightChild() = 0; // (concrete function must throw std::out_of_range when not existent)
+
+
+    virtual const MutableNode& LeftChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
+    virtual const MutableNode& RightChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
 
   };
 
@@ -237,7 +239,7 @@ public:
   /* ************************************************************************ */
 
   // Specific member functions
-
+  using BinaryTree<Data>::Root;
   virtual  MutableNode& Root()  = 0; // (concrete function must throw std::length_error when empty)
 
   /* ************************************************************************ */
@@ -278,25 +280,25 @@ protected:
 
   // Auxiliary member function (for PreOrderMappableContainer)
 
-  void RecursivePreOrderMap(const MutableNode *node, MapFun func) const; // Accessory function executing from one node of the tree
+  void RecursivePreOrderMap(MutableNode *node, MapFun func); // Accessory function executing from one node of the tree
 
   /* ************************************************************************ */
 
   // Auxiliary member function (for PostOrderMappableContainer)
 
-  void RecursivePostOrderMap(const MutableNode *node, MapFun func) const; // Accessory function executing from one node of the tree
+  void RecursivePostOrderMap(MutableNode *node, MapFun func); // Accessory function executing from one node of the tree
 
   /* ************************************************************************ */
 
   // Auxiliary member function (for InOrderMappableContainer)
 
-  void RecursiveInOrderMap(const MutableNode *node, MapFun func) const; // Accessory function executing from one node of the tree
+  void RecursiveInOrderMap(MutableNode *node, MapFun func); // Accessory function executing from one node of the tree
 
   /* ************************************************************************ */
 
   // Auxiliary member function (for BreadthMappableContainer)
 
-  void NotRecursiveBreadthMap(const MutableNode *node, MapFun func) const; // Accessory function executing from one node of the tree
+  void NotRecursiveBreadthMap(MutableNode *node, MapFun func); // Accessory function executing from one node of the tree
 
 };
 
