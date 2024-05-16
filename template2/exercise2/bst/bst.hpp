@@ -16,7 +16,7 @@ template <typename Data>
   class BST : public virtual ClearableContainer,
               public virtual DictionaryContainer<Data>,
               public virtual BinaryTree<Data>,
-              protected virtual BinaryTreeLnk<Data>{
+              protected virtual BinaryTreeLnk<Data>   {
 
 
 private:
@@ -25,7 +25,7 @@ private:
 
 protected:
 
-  using BinaryTreeLnk<Data>::NodeLnk;
+  using typename BinaryTreeLnk<Data>::NodeLnk;
 
   using Container::size;
   using BinaryTreeLnk<Data>::root;
@@ -33,6 +33,7 @@ protected:
   // ...
 
 public:
+
 
   // Default constructor
   BST() = default;
