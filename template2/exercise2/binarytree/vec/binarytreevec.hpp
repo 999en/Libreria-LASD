@@ -74,11 +74,11 @@ protected:
     virtual bool HasLeftChild() const noexcept override;
     virtual bool HasRightChild() const noexcept override;
 
-    virtual NodeVec& LeftChild();
-    virtual const NodeVec& LeftChild() const;
+    virtual NodeVec& LeftChild() override ;
+    virtual const NodeVec& LeftChild() const override;
 
-    virtual NodeVec& RightChild();
-    virtual const NodeVec& RightChild() const;
+    virtual NodeVec& RightChild() override;
+    virtual const NodeVec& RightChild() const override;
   };
 
   using Container::size;
@@ -144,6 +144,7 @@ public:
 
   // Specific member function (inherited from MutableBinaryTree)
 
+	using BinaryTree<Data>::Root;
   virtual NodeVec& Root() override; // Override MutableBinaryTree member (throw std::length_error when empty)
 
   /* ************************************************************************ */

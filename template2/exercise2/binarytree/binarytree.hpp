@@ -218,8 +218,8 @@ public:
 
 
 
-    virtual const MutableNode& LeftChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
-    virtual const MutableNode& RightChild() const = 0; // (concrete function must throw std::out_of_range when not existent)
+    virtual  MutableNode& LeftChild() = 0; // (concrete function must throw std::out_of_range when not existent)
+    virtual  MutableNode& RightChild() = 0; // (concrete function must throw std::out_of_range when not existent)
 
   };
 

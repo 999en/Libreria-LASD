@@ -93,7 +93,7 @@ public:
 
   // Specific member function (inherited from BinaryTree)
 
-  virtual const Node& Root() const noexcept override; // Override BinaryTree member
+  virtual const NodeLnk& Root() const noexcept override; // Override BinaryTree member
 
   /* ************************************************************************ */
 
