@@ -23,7 +23,7 @@ inline bool BinaryTree<Data>::operator==(const BinaryTree &right) const noexcept
 template <typename Data>
 void BinaryTree<Data>::Traverse(TraverseFun func) const {
     if(!this->Empty()) {
-        PreOrderMap( 
+        PreOrderTraverse(
                 [&func](const Data& dat) {
                     func(dat);
                 }

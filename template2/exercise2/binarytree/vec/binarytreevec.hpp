@@ -15,6 +15,7 @@ namespace lasd {
 
 template <typename Data>
 class BinaryTreeVec : virtual public MutableBinaryTree<Data>,
+                      virtual public ClearableContainer,
                       virtual protected Vector<Data> {
 
 private:

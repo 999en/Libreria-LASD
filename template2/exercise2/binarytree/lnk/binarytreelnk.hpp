@@ -13,7 +13,8 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class BinaryTreeLnk : public virtual MutableBinaryTree<Data>{
+class BinaryTreeLnk : public virtual MutableBinaryTree<Data>,
+                      virtual public ClearableContainer{
 
 private:
 
@@ -22,6 +23,11 @@ private:
 protected:
 
   using Container::size;
+
+ public:
+
+   using typename BinaryTree<Data>::Node;
+   using typename MutableBinaryTree<Data>::MutableNode;
 
   struct NodeLnk : virtual MutableBinaryTree<Data>::MutableNode {  // Must extend MutableNode
 
@@ -88,28 +94,28 @@ protected:
       return (RChild == nullptr ? false : true);
     };
 
-    virtual inline NodeLnk& LeftChild() override {
+    virtual inline MutableNode& LeftChild() override {
       if(IsLeaf()) {
         throw std::out_of_range("Left Child does not exists.");
       }
       return *LChild;
     }; 
 
-    virtual const inline NodeLnk& LeftChild() const override {
+    virtual const inline Node& LeftChild() const override {
       if(IsLeaf()) {
         throw std::out_of_range("Left Child does not exists.");
       }
       return *LChild;
     }; 
 
-    virtual inline NodeLnk& RightChild() override {
+    virtual inline MutableNode& RightChild() override {
       if(IsLeaf()) {
         throw std::out_of_range("Right Child does not exists.");
       }
       return *RChild;
     };
 
-    virtual const inline NodeLnk& RightChild() const override {
+    virtual const inline Node& RightChild() const override {
       if(IsLeaf()) {
         throw std::out_of_range("Right Child does not exists.");
       }
