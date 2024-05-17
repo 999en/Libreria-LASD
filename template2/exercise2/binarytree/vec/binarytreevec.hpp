@@ -163,13 +163,13 @@ public:
 
   using typename TraversableContainer<Data>::TraverseFun;
 
-virtual void BreadthTraverse(TraverseFun) const override;// Override BreadthTraversableContainer member
+//virtual void BreadthTraverse(TraverseFun) const override;// Override BreadthTraversableContainer member
 
   /* ************************************************************************ */
 using typename MappableContainer<Data>::MapFun;
 
   // Specific member function (inherited from BreadthMappableContainer)
-virtual void BreadthMap(MapFun func) override; // Override BreadthMappableContainer member
+//virtual void BreadthMap(MapFun func) override; // Override BreadthMappableContainer member
 
   void PreOrderTraverse(TraverseFun func) const override{
     BinaryTree<Data>::PreOrderTraverse(func);

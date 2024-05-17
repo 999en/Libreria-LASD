@@ -5,7 +5,6 @@
 /* ************************************************************************** */
 
 #include "../binarytree/lnk/binarytreelnk.hpp"
-#include "../container/dictionary.hpp"
 
 /* ************************************************************************** */
 
@@ -13,11 +12,12 @@ namespace lasd {
 
 /* ************************************************************************** */
 
-template <typename Data>
+  template <typename Data>
   class BST : public virtual ClearableContainer,
               public virtual DictionaryContainer<Data>,
               public virtual BinaryTree<Data>,
-              protected virtual BinaryTreeLnk<Data>   {
+              protected virtual BinaryTreeLnk<Data> {
+
 
 
 private:

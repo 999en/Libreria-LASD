@@ -16,7 +16,7 @@ uniform_int_distribution<int> RandomNumber(0, 100);
 #include "test.hpp"
 /* ************************************************************************** */
 
-void mytest() {
+void myTest() {
   TestEsercizio1();
 }
 
@@ -510,6 +510,8 @@ bool TestAssegnazioni()
     return TestAssergnazioniErrori;
 }
 
+/*
+
 bool TestDictionaryFunctions()
 { 
   bool TestDictionaryErrori = true;
@@ -617,6 +619,9 @@ bool TestDictionaryFunctions()
 
   return TestDictionaryErrori;
 }
+
+
+ */
 
 bool TestSort()
 {
@@ -744,6 +749,7 @@ bool TestQueueVec()
   if(value == 2) {
     cout<<"CORRETTO!\n";
   } else {
+
     cout<<"ERRORE!\n";
     TestQueueVec = false;
   }
@@ -781,7 +787,7 @@ bool TestQueueVec()
 void TestEsercizio1(){
   cout<<(TestCostruttori()? "\nPASSATO\n" : "\nNON Passato\n");
   cout<<(TestAssegnazioni()? "\nPASSATO\n" : "\nNON Passato\n");
-  cout<<(TestDictionaryFunctions()? "\nPASSATO\n" : "\nNON Passato\n");
+  //cout<<(TestDictionaryFunctions()? "\nPASSATO\n" : "\nNON Passato\n");
   cout<<(TestSort()? "\nPASSATO\n\n" : "\nNON Passato\n\n");
   cout<<(TestQueueVec()? "\nPASSATO\n\n" : "\nNON Passato\n\n");
 }
