@@ -145,7 +145,7 @@ public:
 
   // Specific member function (inherited from MutableBinaryTree)
 
-	using BinaryTree<Data>::Root;
+	using typename BinaryTree<Data>::Root;
   virtual NodeVec& Root() override; // Override MutableBinaryTree member (throw std::length_error when empty)
 
   /* ************************************************************************ */

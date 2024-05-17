@@ -135,7 +135,6 @@ namespace lasd {
 
     private:
 
-        //TODO Gennaro Ventrone vedi un po' qua unica cosa diversa
         Data* root;
 
     protected:

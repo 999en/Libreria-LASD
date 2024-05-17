@@ -15,7 +15,7 @@ namespace lasd
             [&queue](const Data &dat)
             {
                 NodeLnk *&current = *queue.HeadNDequeue();
-                current = new NodeLnk(std::move(dat));
+                current = new NodeLnk(dat);
                 queue.Enqueue(&current->LChild);
                 queue.Enqueue(&current->RChild);
             });
@@ -30,7 +30,7 @@ namespace lasd
             [&queue](const Data &dat)
             {
                 NodeLnk *&current = *queue.HeadNDequeue();
-                current = new NodeLnk(dat);
+                current = new NodeLnk(std::move(dat));
                 queue.Enqueue(&current->LChild);
                 queue.Enqueue(&current->RChild);
             });
