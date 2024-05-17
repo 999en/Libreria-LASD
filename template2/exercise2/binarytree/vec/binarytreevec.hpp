@@ -24,6 +24,7 @@ private:
 
 protected:
 
+
   // ...
   struct NodeVec : virtual MutableBinaryTree<Data>::MutableNode{ // Must extend MutableNode
 
@@ -163,13 +164,17 @@ public:
 
   using typename TraversableContainer<Data>::TraverseFun;
 
-//virtual void BreadthTraverse(TraverseFun) const override;// Override BreadthTraversableContainer member
+ inline virtual void BreadthTraverse(TraverseFun func) const override{
+    Vector<Data>::PreOrderTraverse(func);
+  }; // Override BreadthTraversableContainer member
 
   /* ************************************************************************ */
 using typename MappableContainer<Data>::MapFun;
 
   // Specific member function (inherited from BreadthMappableContainer)
-//virtual void BreadthMap(MapFun func) override; // Override BreadthMappableContainer member
+ inline virtual void BreadthMap(MapFun func) override{
+    Vector<Data>::PreOrderMap(func);
+  };  // Override BreadthMappableContainer member
 
   void PreOrderTraverse(TraverseFun func) const override{
     BinaryTree<Data>::PreOrderTraverse(func);
