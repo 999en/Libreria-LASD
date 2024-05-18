@@ -36,6 +36,8 @@ bool TestQueueVec();
 void TestEsercizio2();
 bool TestBST();
 bool TestIteratori();
+bool TestBTVec();
+bool TestBTLnk();
 
 
 
