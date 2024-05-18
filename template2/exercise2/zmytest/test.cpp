@@ -1306,7 +1306,6 @@ bool TestBTLnk()
 }
 
 
-
 bool TestBST()
 {
   bool testBST = true;
@@ -1506,7 +1505,7 @@ bool TestBST()
   for(int i = 0; i < vettore1.Size(); i++) {
     vettore1[i] = RandomNumber(gen);
   }
-  cout<<lines++<<" MAP TRAVERSE:"; 
+  cout<<lines++<<" TRAVERSE VETTORE:"; 
   vettore1.Traverse(
     [](int dat){
       cout<<"->"<<dat;
