@@ -1493,7 +1493,7 @@ bool TestBST()
     testBST &= false;   
   }
 
-  lasd::Vector<int>vettore(bst5);
+  lasd::SortableVector<int>vettore(bst5);
   for(int i=0; i< vettore.Size();i++) {
     cout<<lines++<<" extracted value from Vector(BST): "<<vettore[i]<<endl;
   }
@@ -1502,11 +1502,11 @@ bool TestBST()
     cout<<lines++<<" extracted value from List(BST): "<<lista[i]<<endl;
   }
 
-  lasd::Vector<int> vettore1((RandomNumber(gen)%10) + 5);
+  lasd::SortableVector<int> vettore1((RandomNumber(gen)%10) + 5);
   for(int i = 0; i < vettore1.Size(); i++) {
     vettore1[i] = RandomNumber(gen);
   }
-  cout<<lines++<<" MAP VETTORE:"; 
+  cout<<lines++<<" MAP TRAVERSE:"; 
   vettore1.Traverse(
     [](int dat){
       cout<<"->"<<dat;
