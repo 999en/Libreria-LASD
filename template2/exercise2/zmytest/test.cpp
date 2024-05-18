@@ -915,7 +915,7 @@ bool TestIteratori() {
   for(int i = 0; i < vec.Size(); i++) {
     vec[i] = RandomNumber(gen);
   }
-  vec;
+  vec.Sort();
   lasd::BinaryTreeVec<int> btvec1(vec);
   lasd::BTBreadthIterator<int> breadthIterVec(btvec1);
   int next = 0;
@@ -1432,7 +1432,7 @@ bool TestBST()
     cout<<lines++<<" extracted BST Root is '"<<bst5.Root().Element()<<"'(expected '"<<vec3[0]<<"'): Error!\n";
     testBST &= false;   
   }
-  vec3;
+  vec3.Sort();
   if(vec3[0] == bst5.Min()) {
     cout<<lines++<<" extracted BST Min is '"<<bst5.Min()<<"'(expected '"<<vec3[0]<<"'): Correct!\n";
   } else {
