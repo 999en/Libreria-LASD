@@ -1,128 +1,80 @@
 
-#ifndef CONTAINER_HPP
-#define CONTAINER_HPP
-
-/* ************************************************************************** */
-
 namespace lasd {
 
-  typedef unsigned long int ulong;
-
 /* ************************************************************************** */
 
-class Container {
+    template <typename Data>
+    bool DictionaryContainer<Data>::InsertAll(const TraversableContainer<Data>& trav) {
+        bool all = true;
 
-private:
+        trav.Traverse(
+            [this, &all](const Data& dat){
+                all &= Insert(dat);
+            });
 
-protected:
+            return all;
+    }
 
-  ulong size = 0;
+    template <typename Data>
+    bool DictionaryContainer<Data>::InsertAll(MappableContainer<Data>&& map) noexcept {
+        bool all = true;
 
-public:
+        map.Map(
+            [this, &all](const Data& dat){
+                all &= Insert(std::move(dat));
+            });
 
-  // Destructor
-  virtual ~Container() = default;
+            return all;
+    }
 
-  /* ************************************************************************ */
 
-  // Copy assignment
-  Container& operator=(const Container& val) = delete;
+    template <typename Data>
+    bool DictionaryContainer<Data>::InsertSome(const TraversableContainer<Data>& trav) {
+        bool some = false;
 
-  // Move assignment
-  Container& operator=(Container&& val) noexcept = delete;
+        trav.Traverse(
+            [this, &some](const Data& dat){
+                some |= Insert(dat);
+            });
 
-  /* ************************************************************************ */
+            return some;
+    }
 
-  // Comparison operators
-  bool operator==(const Container& val) const noexcept = delete;
-  bool operator!=(const Container& val) const noexcept = delete;
+    template <typename Data>
+    bool DictionaryContainer<Data>::InsertSome(MappableContainer<Data>&& map) noexcept {
+        bool some = false;
 
-  /* ************************************************************************ */
+        map.Map(
+            [this, &some](const Data& dat){
+                some |= Insert(std::move(dat));
+            });
 
-  // Specific member functions
+            return some;
+    }
 
-  virtual inline bool Empty() const noexcept { return (size == 0); }
+    template <typename Data>
+    bool DictionaryContainer<Data>::RemoveAll(const TraversableContainer<Data>& trav) {
+        bool all = true;
 
-  virtual inline ulong Size() const noexcept { return size; }
+        trav.Traverse(
+            [this, &all](const Data& dat){
+                all &= Remove (dat);
+            });
+
+        return all;
+    }
+
+    template <typename Data>
+    bool DictionaryContainer<Data>::RemoveSome(const TraversableContainer<Data>& trav) {
+        bool some = false;
+
+        trav.Traverse(
+            [this, &some](const Data& dat){
+                some |= Remove (dat);
+            });
+
+        return some;
+    }
+/* ************************************************************************** */
+
 };
-
-/* ************************************************************************** */
-
-class ClearableContainer : public virtual Container {
-
-private:
-
-protected:
-
-public:
-
-  // Destructor
-  virtual ~ClearableContainer() = default;
-
-  /* ************************************************************************ */
-
-  // Copy assignment
-  ClearableContainer& operator=(const ClearableContainer& val) = delete;
-
-  // Move assignment
-  ClearableContainer& operator=(ClearableContainer&& val) noexcept = delete;
-
-
-  /* ************************************************************************ */
-
-  // Comparison operators
-  bool operator==(const ClearableContainer& val) const noexcept = delete;
-  bool operator!=(const ClearableContainer& val) const noexcept = delete;
-
-  /* ************************************************************************ */
-
-  // Specific member functions
-
-  virtual void Clear() = 0;
-};
-
-/* ************************************************************************** */
-
-class ResizableContainer : public virtual ClearableContainer{
-
-private:
-
-protected:
-
-public:
-
-  // Destructor
-  virtual ~ResizableContainer() = default; 
-
-  /* ************************************************************************ */
-
-  // Copy assignment
-  ResizableContainer& operator=(const ResizableContainer& val) = delete;
-
-  // Move assignment
-  ResizableContainer& operator=(ResizableContainer&& val) noexcept = delete;
-
-  /* ************************************************************************ */
-
-  // Comparison operators
-  bool operator==(const ResizableContainer& val) const noexcept = delete;
-  bool operator!=(const ResizableContainer& val) const noexcept = delete;
-
-  /* ************************************************************************ */
-
-  // Specific member functions
-
-  virtual void Resize(const ulong new_size) = 0;
-
-  /* ************************************************************************ */
-
-  // Specific member function (inherited from ClearableContainer)
-
-  virtual inline void Clear() override { Resize(0); }
-};
-
-/* ************************************************************************** */
-
-}
-
-#endif
