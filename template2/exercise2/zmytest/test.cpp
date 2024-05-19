@@ -912,7 +912,7 @@ bool TestIteratori() {
   cout<<endl;
 
   lasd::SortableVector<int> vec(RandomNumber(gen) + 1);
-  for(int i = 0; i < vec.Size(); i++) {
+  for(lasd::ulong i = 0; i < vec.Size(); i++) {
     vec[i] = RandomNumber(gen);
   }
   vec.Sort();
@@ -1000,14 +1000,15 @@ bool TestBTVec()
   btvec3 = std::move(vec);
   try{
     btvec3.Root();
-  } catch (std::length_error) {
-    cout<<lines++<<" leng_error called BTVec is Empty, doesn't have root: Correct!"<<endl;
-  } catch (std::exception) {
-    cout<<lines++<<" Wrong exception called: Error!"<<endl;
+  } catch (const std::length_error& e) {
+      // Gestione dell'eccezione
+      std::cerr << lines++ << " Caught std::length_error: " << e.what() << " Correct! " <<std::endl;
+  } catch (const std::exception& e) {
+    std::cerr << lines++ << " Wrong exception called:" << e.what() << " Error!" <<std::endl;
     testBTVec &= false;
   }
   lasd::Vector<double> vec1(RandomNumber(gen) + 1);
-  for(int i = 0; i < vec1.Size() - 1; i++){
+  for(lasd::ulong i = 0; i < vec1.Size() - 1; i++){
     vec1[i] = RandomNumber(gen);
   }
   //creo una ripetizione
@@ -1059,7 +1060,7 @@ bool TestBTVec()
   }
 
   lasd::Vector<int> vec3(RandomNumber(gen) + 1);
-  for(int i = 0; i < vec3.Size(); i++){
+  for(lasd::ulong i = 0; i < vec3.Size(); i++){
     vec3[i] = RandomNumber(gen);
   }
   lasd::Vector<int> vec4(vec3);
@@ -1084,7 +1085,7 @@ bool TestBTVec()
 
   lasd::BinaryTreeVec<int>btvec7(std::move(lista));
   lasd::List<int>list(btvec7);
-  for(int i=0; i< list.Size();i++) {
+  for(lasd::ulong i=0; i< list.Size();i++) {
     cout<<lines++<<" extracted value from List(BTLnk): "<<list[i]<<" Correct!"<<endl;
   }
 
@@ -1170,14 +1171,15 @@ bool TestBTLnk()
   btlnk3 = vec;
   try{
     btlnk3.Root();
-  } catch (std::length_error) {
-    cout<<lines++<<" leng_error called BTLnk is Empty, doesn't have root: Correct!"<<endl;
-  } catch (std::exception) {
-    cout<<lines++<<" Wrong exception called: Error!"<<endl;
+  } catch (const std::length_error& e) {
+      // Gestione dell'eccezione
+      std::cerr << lines++ << " Caught std::length_error: " << e.what() << " Correct! " <<std::endl;
+  } catch (const std::exception& e) {
+    std::cerr << lines++ << " Wrong exception called:" << e.what() << " Error!" <<std::endl;
     testBTLnk &= false;
   }
   lasd::Vector<double> vec1(RandomNumber(gen) + 1);
-  for(int i = 0; i < vec1.Size() - 1; i++){
+  for(lasd::ulong i = 0; i < vec1.Size() - 1; i++){
     vec1[i] = RandomNumber(gen);
   }
   //creo una ripetizione
@@ -1229,7 +1231,7 @@ bool TestBTLnk()
   }
 
   lasd::Vector<int> vec3(RandomNumber(gen) + 1);
-  for(int i = 0; i < vec3.Size(); i++){
+  for(lasd::ulong i = 0; i < vec3.Size(); i++){
     vec3[i] = RandomNumber(gen);
   }
   lasd::BinaryTreeLnk<int> btlnk5(vec3);
@@ -1252,16 +1254,16 @@ bool TestBTLnk()
   vector[1] = RandomNumber(gen);
   lasd::BinaryTreeLnk<int>btlnk7(std::move(vector));
   lasd::List<int>lista(btlnk7);
-  for(int i=0; i< lista.Size();i++) {
+  for(lasd::ulong i=0; i< lista.Size();i++) {
     cout<<lines++<<" extracted value from List(BTLnk): "<<lista[i]<<" Correct!"<<endl;
   }
   lasd::Vector<int>vettore(std::move(btlnk7));
-  for(int i=0; i< vettore.Size();i++) {
+  for(lasd::ulong i=0; i< vettore.Size();i++) {
     cout<<lines++<<" extracted value from Vector(BTLnk): "<<vettore[i]<<" Correct!"<<endl;
   }
 
   lasd::Vector<int> vettore1((RandomNumber(gen)%10) + 5);
-  for(int i = 0; i < vettore1.Size(); i++) {
+  for(lasd::ulong i = 0; i < vettore1.Size(); i++) {
     vettore1[i] = RandomNumber(gen);
   }
   cout<<lines++<<" MAP VETTORE:";
@@ -1323,7 +1325,7 @@ bool TestBST()
   }
 
   lasd::Vector<int> vec2(RandomNumber(gen) + 1);
-  for(int i = 0; i < vec2.Size(); i ++) {
+  for(lasd::ulong i = 0; i < vec2.Size(); i ++) {
     vec2[i] = RandomNumber(gen);
   }
   bst1.Clear();
@@ -1413,7 +1415,7 @@ bool TestBST()
   }
   
   lasd::SortableVector<int> vec3(RandomNumber(gen) + 3);
-  for(int i = 0; i < vec3.Size(); i++) {
+  for(lasd::ulong i = 0; i < vec3.Size(); i++) {
     vec3[i] = RandomNumber(gen);
   }
   lasd::BST<int> bst5(vec3);
@@ -1456,15 +1458,27 @@ bool TestBST()
     cout<<lines++<<" successor of Predecessor's Min is'"<<bst5.Successor(bst5.Predecessor(bst5.Max()))<<"'(expected '"<<bst5.Max()<<"'): Error!\n";
     testBST &= false;
   }
-  bst5.Clear();
+
+
   try{
     bst5.Root();
-  } catch (std::length_error) {
-    cout<<lines++<<" leng_error called BST is Empty, doesn't have root: Correct!"<<endl; 
-  } catch (std::exception) {
-    cout<<lines++<<" Wrong exception called: Error!"<<endl; 
+  } catch (const std::length_error& e) {
+    // Gestione dell'eccezione
+    std::cerr << lines++ << " Caught std::length_error: " << e.what() << " Correct! " <<std::endl;
+  } catch (const std::exception& e) {
+    std::cerr << lines++ << " Wrong exception called:" << e.what() << " Error!" <<std::endl;
     testBST &= false;     
   }
+
+
+  bst5.Clear();
+  if(bst5.Empty()) {
+    cout<<lines++<<" BST has been successfully cleared!: Correct!"<<endl;
+  } else {
+    cout<<lines++<<" BST has NOT been cleared!: Error!"<<endl;
+  }
+
+
   if(bst5.Insert(5)){
     cout<<lines++<<" Inserted value 5: Correct!"<<endl;
   }else {
@@ -1479,10 +1493,11 @@ bool TestBST()
   }
   try {
     bst5.Successor(8);   
-  } catch (std::length_error) {
-    cout<<lines++<<" leng_error, value '8' doesnt' exists in BST: Correct!"<<endl;
-  } catch (std::exception) {
-    cout<<lines++<<" exception, value '8' doesnt' exists in BST: Error!"<<endl;
+  } catch (const std::length_error& e) {
+    // Gestione dell'eccezione
+    std::cerr << lines++ << " Caught std::length_error: " << e.what() << " Correct! " <<std::endl;
+  } catch (const std::exception& e) {
+    std::cerr << lines++ << " Wrong exception called:" << e.what() << " Error!" <<std::endl;
     testBST &= false;
   }
   if(bst5.Successor(6) == 7) {
@@ -1492,17 +1507,17 @@ bool TestBST()
     testBST &= false;   
   }
 
-  lasd::SortableVector<int>vettore(bst5);
-  for(int i=0; i< vettore.Size();i++) {
+  lasd::Vector<int>vettore(bst5);
+  for(lasd::ulong i=0; i< vettore.Size();i++) {
     cout<<lines++<<" extracted value from Vector(BST): "<<vettore[i]<<endl;
   }
   lasd::List<int>lista(bst5);
-  for(int i=0; i< lista.Size();i++) {
+  for(lasd::ulong i=0; i< lista.Size();i++) {
     cout<<lines++<<" extracted value from List(BST): "<<lista[i]<<endl;
   }
 
-  lasd::SortableVector<int> vettore1((RandomNumber(gen)%10) + 5);
-  for(int i = 0; i < vettore1.Size(); i++) {
+  lasd::Vector<int> vettore1((RandomNumber(gen)%10) + 5);
+  for(lasd::ulong i = 0; i < vettore1.Size(); i++) {
     vettore1[i] = RandomNumber(gen);
   }
   cout<<lines++<<" TRAVERSE VETTORE:"; 

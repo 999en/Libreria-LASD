@@ -195,11 +195,9 @@ public:
   // Specific member function (inherited from ClearableContainer)
 
   virtual inline void Clear() override { 
-    if (root != nullptr) { 
-      delete root; 
-      root=nullptr; 
-    } 
-    size = 0; 
+      delete root;
+      root = nullptr;
+      size = 0;
   }; // Override ClearableContainer member
 
 };

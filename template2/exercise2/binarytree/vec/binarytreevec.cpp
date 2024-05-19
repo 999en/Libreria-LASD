@@ -21,7 +21,7 @@ BinaryTreeVec<Data>::NodeVec::NodeVec(Data&& dat, int i, BinaryTreeVec<Data>* bt
 template <typename Data>
 bool BinaryTreeVec<Data>::NodeVec::HasLeftChild() const noexcept
 {
-    if(index*2+1 < bt->size) {
+    if(static_cast<ulong>(index * 2 + 1) < bt->size) {
         return true;
     }
     return false;
@@ -29,7 +29,7 @@ bool BinaryTreeVec<Data>::NodeVec::HasLeftChild() const noexcept
 
 template <typename Data>
 bool BinaryTreeVec<Data>::NodeVec::HasRightChild() const noexcept {
-    if(index*2+2 < bt->size) {
+    if(static_cast<ulong>(index * 2 + 2)< bt->size) {
             return true;
     }
     return false;
@@ -105,7 +105,7 @@ BinaryTreeVec<Data>::BinaryTreeVec(const BinaryTreeVec<Data> &right) {
     Nodes = new NodeVec[right.Size()];
     std::copy(right.elem, right.elem + size, elem);
     std::copy(right.Nodes, right.Nodes + size, Nodes);
-    for(int i = 0; i < right.Size(); i++) {
+    for(lasd::ulong i = 0; i < right.Size(); i++) {
         Nodes[i].bt = this;
     }
 }
@@ -115,7 +115,7 @@ BinaryTreeVec<Data>::BinaryTreeVec(BinaryTreeVec<Data> &&right) noexcept {
     std::swap(this->size, right.size);
     std::swap(elem, right.elem);
     std::swap(Nodes, right.Nodes);
-    for(int i = 0; i < size; i++) {
+    for(lasd::ulong i = 0; i < size; i++) {
         Nodes[i].bt = this;
     }
 }
@@ -127,7 +127,7 @@ BinaryTreeVec<Data>& BinaryTreeVec<Data>::operator=(const BinaryTreeVec& right) 
     Nodes = new NodeVec[right.Size()];
     std::copy(right.elem, right.elem + size, elem);
     std::copy(right.Nodes, right.Nodes + size, Nodes);
-    for(int i = 0; i < right.Size(); i++) {
+    for(lasd::ulong i = 0; i < right.Size(); i++) {
         Nodes[i].bt = this;
     }
     return *this;
@@ -138,10 +138,10 @@ BinaryTreeVec<Data>& BinaryTreeVec<Data>::operator=(BinaryTreeVec &&right) noexc
     std::swap(this->size, right.size);
     std::swap(elem, right.elem);
     std::swap(Nodes, right.Nodes);
-    for(int i = 0; i < size; i++) {
+    for(lasd::ulong i = 0; i < size; i++) {
         Nodes[i].bt = this;
     }
-    for(int i = 0; i < right.size; i++) {
+    for(lasd::ulong i = 0; i < right.size; i++) {
         right.Nodes[i].bt = &right;
     }
     return *this;

@@ -211,7 +211,7 @@ void BST<Data>::Clear() noexcept {
 }
 
   template <typename Data>
-  const typename BinaryTreeLnk<Data>::NodeLnk& BST<Data>::Root() const noexcept {
+  const typename BinaryTreeLnk<Data>::NodeLnk& BST<Data>::Root() const  {
   if (root == nullptr) {
     throw std::length_error("Error: BinaryLnkTree->isEmpty");
   }
@@ -221,7 +221,7 @@ void BST<Data>::Clear() noexcept {
 
 template <typename Data>
 inline Data BST<Data>::DataNDelete(NodeLnk *node) {
-  Data value;
+  Data value = node->element;
   std::swap(value, node->element);
   delete node;
   return value;

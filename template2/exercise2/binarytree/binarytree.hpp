@@ -214,10 +214,11 @@ public:
 
     // Specific member functions
 
+    using BinaryTree<Data>::Node::Element;
     virtual Data& Element() noexcept = 0; // Mutable access to the element (concrete function should not throw exceptions)
 
-
-
+    using BinaryTree<Data>::Node::RightChild;
+    using BinaryTree<Data>::Node::LeftChild;
     virtual  MutableNode& LeftChild() = 0; // (concrete function must throw std::out_of_range when not existent)
     virtual  MutableNode& RightChild() = 0; // (concrete function must throw std::out_of_range when not existent)
 
