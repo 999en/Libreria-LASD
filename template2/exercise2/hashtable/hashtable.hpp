@@ -21,51 +21,69 @@ class Hashable {
 
 public:
 
-  // type operator()(argument) specifiers; // (concrete function should not throw exceptions)
+  ulong operator()(const Data& element) const noexcept; // (concrete function should not throw exceptions)
 
 };
 
 /* ************************************************************************** */
 
 template <typename Data>
-class HashTable {
-                  // Must extend ResizableContainer,
-                  //             DictionaryContainer<Data>
+class HashTable : virtual public ResizableContainer,
+                  virtual public DictionaryContainer<Data>{
 
 private:
 
-  // ...
-
 protected:
 
-  // using DictionaryContainer<Data>::???;
+  using Container::size;
 
-  // ...
+  ulong a = 3;
+  ulong b = 5;
+  
+  ulong prime = 1069;
+  ulong tableSize = 16;
+
+  std::default_random_engine gen = std::default_random_engine(std::random_device{}());
+  std::uniform_int_distribution<ulong> genA = std::uniform_int_distribution<ulong>(1, prime);
+  std::uniform_int_distribution<ulong> genB = std::uniform_int_distribution<ulong>(0, prime);
+
+  //Constructor
+  HashTable() {
+    a = (genA(gen) * 2) + 1;
+    b = std::pow(2, std::ceil(log2(genB(gen))));
+  }
+
+  //Copy constructor
+  HashTable(const HashTable& right);
+
+  //Move constructor
+  HashTable(HashTable&& right) noexcept;
 
 public:
 
   // Destructor
-  // ~HashTable() specifiers
+  virtual ~HashTable() = default;
 
   /* ************************************************************************ */
 
   // Copy assignment
-  // type operator=(argument); // Copy assignment of abstract types should not be possible.
+  HashTable& operator=(const HashTable& right); // Copy assignment of abstract types should not be possible.
 
   // Move assignment
-  // type operator=(argument); // Move assignment of abstract types should not be possible.
+  HashTable& operator=(HashTable&& right) noexcept; // Move assignment of abstract types should not be possible.
 
   /* ************************************************************************ */
 
   // Comparison operators
-  // type operator==(argument) specifiers; // Comparison of abstract hashtable is possible but not required.
-  // type operator!=(argument) specifiers; // Comparison of abstract hashtable is possible but not required.
+  bool operator==(const HashTable& right) const noexcept = delete; // Comparison of abstract hashtable is possible but not required.
+  bool inline operator!=(HashTable&& right) const noexcept {
+    return !(operator==(right));
+  } // Comparison of abstract hashtable is possible but not required.
 
 protected:
 
   // Auxiliary member functions
-
-  // type HashKey(argument) specifiers;
+  ulong HashKey(ulong key) const noexcept;
 
 };
 
