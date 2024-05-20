@@ -1479,10 +1479,10 @@ bool TestBST()
   }
 
 
-  if(bst5.Insert(5)){
-    cout<<lines++<<" Inserted value 5: Correct!"<<endl;
+  if(bst5.Insert(3)){
+    cout<<lines++<<" Inserted value 3: Correct!"<<endl;
   }else {
-    cout<<lines++<<" Not inserted value 5: Error!"<<endl;
+    cout<<lines++<<" Not inserted value 3: Error!"<<endl;
     testBST &= false;
   }
   if(bst5.Insert(7)) {
