@@ -451,12 +451,28 @@ void stestVectorListString(uint & testnum, uint & testerr) {
     lasd::List<string> coplstx(lst);
     EqualList(loctestnum, loctesterr, coplstx, coplst, true);
 
+    Size(loctestnum, loctesterr, vec, true, 3);
+    TraversePreOrder(loctestnum, loctesterr, vec, true, &TraversePrint<string>);
+    Size(loctestnum, loctesterr, copvec, true, 3);
+    TraversePreOrder(loctestnum, loctesterr, copvec, true, &TraversePrint<string>);
+
     lasd::List<string> coplsty(move(vec));
     EqualList(loctestnum, loctesterr, coplst, coplsty, true);
+    Size(loctestnum, loctesterr, vec, true, 3);
+    TraversePreOrder(loctestnum, loctesterr, vec, true, &TraversePrint<string>);
+    TraversePreOrder(loctestnum, loctesterr, copvec, true, &TraversePrint<string>);
     EqualVector(loctestnum, loctesterr, vec, copvec, false);
+
+    Size(loctestnum, loctesterr, lst, true, 3);
+    TraversePreOrder(loctestnum, loctesterr, lst, true, &TraversePrint<string>);
+    Size(loctestnum, loctesterr, coplst, true, 3);
+    TraversePreOrder(loctestnum, loctesterr, coplst, true, &TraversePrint<string>);
 
     lasd::SortableVector<string> copvecy(move(lst));
     EqualVector(loctestnum, loctesterr, copvec, copvecy, true);
+    Size(loctestnum, loctesterr, lst, true, 3);
+    TraversePreOrder(loctestnum, loctesterr, lst, true, &TraversePrint<string>);
+    TraversePreOrder(loctestnum, loctesterr, coplst, true, &TraversePrint<string>);
     EqualList(loctestnum, loctesterr, lst, coplst, false);
   }
   catch (...) {
