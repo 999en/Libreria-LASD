@@ -21,7 +21,9 @@
 #include "../binarytree/lnk/binarytreelnk.hpp"
 #include "../binarytree/vec/binarytreevec.hpp"
 #include "../bst/bst.hpp"
-
+#include "../hashtable/hashtable.hpp"
+#include "../hashtable/clsadr/htclsadr.hpp"
+#include "../hashtable/opnadr/htopnadr.hpp"
 /* ************************************************************************** */
 
 void myTest();
@@ -39,6 +41,9 @@ bool TestIteratori();
 bool TestBTVec();
 bool TestBTLnk();
 
+void TestEsercizio3();
+bool TestOpenAdr();
+bool testCloseAdr();
 
 
 /* ************************************************************************** */
