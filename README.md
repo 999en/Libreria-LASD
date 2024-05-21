@@ -16,7 +16,7 @@ Clona il progetto:
 Naviga nella directory del progetto:
 
 ```bash
-  cd Libreria-LASD/Main Project/Library/
+  cd Libreria-LASD/Main\ Project/Library/
 ```
 
 Compila ed esegui il programma:
