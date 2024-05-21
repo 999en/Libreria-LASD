@@ -1659,7 +1659,7 @@ bool TestOpenAdr() {
     }
     htOpn1.Clear();
     bool flagClear = true;
-    for(int i = 0; i < vec1.Size(); i++) {
+    for(lasd::ulong i = 0; i < vec1.Size(); i++) {
         if(htOpn1.Exists(vec1[i])) {
             flagClear &= false;
             testOpenAdr = false;
@@ -1725,7 +1725,7 @@ bool TestOpenAdr() {
         cout<<lines++<<" htOpn4 is NOT empty now: Error!"<<endl;
         testOpenAdr = false;
     }
-    for(ulong i = 0; i < RandomNumber(gen) * RandomNumber(gen) + 1; i++) {
+    for(int i = 0; i < RandomNumber(gen) * RandomNumber(gen) + 1; i++) {
         int RandomValue = RandomNumber(gen);
         if(htOpn4.Insert(RandomValue)) {
             cout<<" Inserted value: "<<RandomValue<<endl;
@@ -1742,7 +1742,7 @@ bool TestOpenAdr() {
     }
 
     lasd::List<int> lst3;
-    for(ulong i = 0; i < RandomNumber(gen) + 1; i++) {
+    for(int i = 0; i < RandomNumber(gen) + 1; i++) {
         lst3.Insert(RandomNumber(gen));
     }
     lasd::HashTableOpnAdr<int> htOpn5(31, std::move(lst3));
@@ -1800,7 +1800,7 @@ bool TestOpenAdr() {
     lasd::List<int> lst4;
     int InsertedElement;
     cout<< "Creating a List without repetitions: "<<endl;
-    for(ulong i = 0; i < RandomNumber(gen) * RandomNumber(gen) + 1; i++) {
+    for(int i = 0; i < RandomNumber(gen) * RandomNumber(gen) + 1; i++) {
         InsertedElement = RandomNumber(gen) * RandomNumber(gen); 
         if(!lst4.Exists(InsertedElement)) {
             lst4.Insert(InsertedElement);       //inserisco senza duplicati nella lista
@@ -2078,7 +2078,7 @@ bool TestCloseAdr() {
     }
     htCls1.Clear();
     bool flagClear = true;
-    for(int i = 0; i < vec1.Size(); i++) {
+    for(ulong i = 0; i < vec1.Size(); i++) {
         if(htCls1.Exists(vec1[i])) {
             flagClear &= false;
             testCloseAdr = false;
@@ -2144,7 +2144,7 @@ bool TestCloseAdr() {
         cout<<lines++<<" htOpn4 is NOT empty now: Error!"<<endl;
         testCloseAdr = false;
     }
-    for(ulong i = 0; i < RandomNumber(gen) * RandomNumber(gen) + 1; i++) {
+    for(int i = 0; i < RandomNumber(gen) * RandomNumber(gen) + 1; i++) {
         int RandomValue = RandomNumber(gen);
         if(htCls4.Insert(RandomValue)) {
             cout<<" Inserted value: "<<RandomValue<<endl;
@@ -2161,7 +2161,7 @@ bool TestCloseAdr() {
     }
 
     lasd::List<int> lst3;
-    for(ulong i = 0; i < RandomNumber(gen) + 1; i++) {
+    for(int i = 0; i < RandomNumber(gen) + 1; i++) {
         lst3.Insert(RandomNumber(gen));
     }
     lasd::HashTableClsAdr<int> htCls5(31, std::move(lst3));
@@ -2219,7 +2219,7 @@ bool TestCloseAdr() {
     lasd::List<int> lst4;
     int InsertedElement;
     cout<< "Creating a List without repetitions: "<<endl;
-    for(ulong i = 0; i < RandomNumber(gen) * RandomNumber(gen) + 1; i++) {
+    for(int i = 0; i < RandomNumber(gen) * RandomNumber(gen) + 1; i++) {
         InsertedElement = RandomNumber(gen) * RandomNumber(gen); 
         if(!lst4.Exists(InsertedElement)) {
             lst4.Insert(InsertedElement);       //inserisco senza duplicati nella lista

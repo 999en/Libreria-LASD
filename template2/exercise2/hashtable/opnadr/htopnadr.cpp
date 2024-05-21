@@ -181,7 +181,7 @@ bool HashTableOpnAdr<Data>::Find(ulong &index, ulong& prob_index, const Data &el
         }
         tmp_index = HashKey(element, ++prob_index);
         jumps++;
-    } while(!tableFlag[tmp_index] == empt);
+    } while(!(tableFlag[tmp_index] == empt));
     return false;
 }
 
